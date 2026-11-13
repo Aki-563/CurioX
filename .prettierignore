@@ -1,0 +1,12 @@
+node_modules
+dist
+dist-review
+.astro
+test-artifacts
+test-results
+playwright-report
+pnpm-lock.yaml
+CURIOX_CODEX_MASTER_PLAN.md
+docs/CURIOX_MASTER_PLAN.md
+# Generated task table; context script preserves compact exact task rows.
+docs/CURIOX_PROGRESS.md

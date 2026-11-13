@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ButtonLink from '../../components/ui/ButtonLink.astro';
+import Badge from '../../components/ui/Badge.astro';
+import SectionHeading from '../../components/ui/SectionHeading.astro';
+import TextWordmark from '../../components/ui/TextWordmark.astro';
+export function getStaticPaths() {
+  return import.meta.env.DEV || process.env.CURIOX_REVIEW === '1'
+    ? [{ params: { component: 'components' } }]
+    : [];
+}
+---
+
+<BaseLayout
+  title="Component review — CurioX"
+  description="Internal design system review, excluded from release."
+  noindex
+>
+  <div class="container section stack">
+    <p class="eyebrow accent">Local design review / provisional</p>
+    <TextWordmark />
+    <h1>Curious by design.</h1>
+    <p class="muted">
+      Space Grotesk display. Inter body. Electric violet. A precise system for
+      useful technology.
+    </p>
+    <SectionHeading number="01" label="Components">
+      Sharp edges. Clear intent.
+    </SectionHeading>
+    <div class="stack">
+      <Badge>Affordable</Badge>
+      <ButtonLink href="/about/">Explore CurioX</ButtonLink>
+      <ButtonLink href="/" variant="secondary">
+        Back to Home
+      </ButtonLink>
+      <ButtonLink href="#sample" variant="quiet">
+        Read the sample
+      </ButtonLink>
+      <button class="button" disabled>
+        Unavailable action
+      </button>
+    </div>
+    <article class="card stack" id="sample">
+      <p class="eyebrow accent">Editorial panel</p>
+      <h3>Make the complex approachable.</h3>
+      <p class="muted">
+        A restrained panel with clear hierarchy, readable text and room to
+        breathe.
+      </p>
+    </article>
+  </div>
+</BaseLayout>

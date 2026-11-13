@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { seo } from '../config/seo';
+import { site } from '../config/site';
+import ButtonLink from '../components/ui/ButtonLink.astro';
+import Icon from '../components/ui/Icon.astro';
+import '../styles/pages.css';
+---
+
+<BaseLayout {...seo.contact}>
+  <section class="container page-intro contact-intro">
+    <p class="eyebrow accent">Contact CurioX / Start a conversation</p>
+    <div class="contact-layout">
+      <div>
+        <h1>
+          Curious about
+          <br />
+          <span class="muted">something?</span>
+        </h1>
+        <p>
+          A question, an idea or a different perspective. We'd like to hear
+          what's on your mind.
+        </p>
+      </div>
+      <div class="contact-panel stack">
+        <p class="eyebrow accent">A direct line</p>
+        <h2>Let's start with an email.</h2>
+        <p class="muted">Write to CurioX at:</p>
+        <a
+          tabindex="0"
+          class="contact-email"
+          href={`mailto:${site.contact.email}`}
+        >
+          <span>{site.contact.email}</span>
+          <Icon kind="diagonal" />
+        </a>
+        <p class="contact-note muted">
+          Opens your email app. Your message is sent through your chosen email
+          service.
+        </p>
+      </div>
+    </div>
+    <div class="contact-more">
+      <p class="muted">Want to know a little more first?</p>
+      <ButtonLink href="/about/" variant="quiet">
+        Explore our approach
+      </ButtonLink>
+    </div>
+  </section>
+</BaseLayout>

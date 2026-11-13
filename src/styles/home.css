@@ -1,0 +1,368 @@
+.hero {
+  border-bottom: 1px solid var(--color-border);
+  position: relative;
+  overflow: clip;
+}
+.hero-layout {
+  display: grid;
+  position: relative;
+  padding-top: clamp(48px, 6vw, 88px);
+}
+.hero-copy {
+  position: relative;
+  z-index: 2;
+}
+.hero-eyebrow {
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+}
+.hero-eyebrow span {
+  width: 6px;
+  height: 6px;
+  flex: 0 0 6px;
+  background: var(--color-primary);
+}
+.hero h1 {
+  margin-top: 32px;
+  font-weight: 600;
+  letter-spacing: -0.065em;
+}
+.hero-midline {
+  color: var(--color-text);
+}
+.hero-description {
+  color: var(--color-text-muted);
+  font-size: 1rem;
+  max-width: 47ch;
+  margin-top: 32px;
+}
+.hero-actions {
+  display: flex;
+  gap: 20px 32px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+.hero-text-link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 0.875rem;
+  text-decoration: none;
+  min-height: 48px;
+}
+.curiosity-graphic {
+  align-self: center;
+  position: relative;
+  margin-block: 40px 8px;
+}
+.curiosity-graphic svg {
+  width: 100%;
+  height: auto;
+}
+.graphic-caption {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--color-text-subtle);
+  font-size: 0.625rem;
+  letter-spacing: 0.06em;
+}
+.graphic-caption span:last-child {
+  font-size: 1.25rem;
+  line-height: 1;
+  color: var(--color-primary-hover);
+}
+.hero-bottom {
+  grid-column: 1 / -1;
+  padding-block: 24px;
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px 24px;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-subtle);
+}
+.hero-bottom .eyebrow {
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
+}
+.philosophy-body {
+  display: grid;
+  gap: 32px;
+}
+.philosophy-lead {
+  font: 500 clamp(1.25rem, 2.2vw, 2rem)/1.4 var(--font-display);
+  letter-spacing: -0.025em;
+}
+.philosophy-body .muted {
+  max-width: 61ch;
+}
+.principles-section {
+  background: var(--color-bg-alt);
+}
+.principles-grid {
+  display: grid;
+}
+.principle {
+  border-top: 1px solid var(--color-border);
+  padding: 24px 0 40px;
+}
+.principle-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--color-primary-hover);
+}
+.principle-top > span:last-child {
+  font: 300 2rem/1 var(--font-display);
+}
+.principle h3 {
+  margin-top: 48px;
+}
+.principle p {
+  color: var(--color-text-muted);
+  margin-top: 16px;
+  max-width: 34ch;
+  font-size: 1rem;
+}
+.affordable-section {
+  background: var(--color-primary);
+  color: var(--color-bg);
+  overflow: clip;
+}
+.affordable-layout {
+  position: relative;
+  display: grid;
+  gap: 40px;
+  padding-block: clamp(48px, 6vw, 88px);
+}
+.affordable-section .badge {
+  color: var(--color-bg);
+  border-color: var(--color-bg);
+}
+.affordable-section .badge::before {
+  background: var(--color-bg);
+}
+.affordable-section h2 {
+  margin-top: 32px;
+  position: relative;
+  z-index: 1;
+}
+.affordable-copy {
+  position: relative;
+  z-index: 1;
+  max-width: 44ch;
+  font-size: 1rem;
+}
+.affordable-copy p:first-child {
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+.affordable-copy a {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid var(--color-bg);
+  min-height: 48px;
+  padding-block: 12px;
+  margin-top: 24px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+.affordable-copy a:hover {
+  color: var(--color-bg);
+  text-decoration: underline;
+}
+.affordable-copy a:focus-visible {
+  outline-color: var(--color-bg);
+}
+.affordable-lines {
+  position: absolute;
+  bottom: -190px;
+  left: 25%;
+  width: 220px;
+  height: 500px;
+  transform: rotate(40deg);
+  border: 1px solid #05040930;
+  box-shadow:
+    24px 0 0 -1px #9351f3,
+    25px 0 0 #05040930,
+    49px 0 0 -1px #9351f3,
+    50px 0 0 #05040930;
+  pointer-events: none;
+}
+.audience-section {
+  display: grid;
+  gap: 48px;
+}
+.audience-intro h2 {
+  margin-block: 32px;
+}
+.audience-intro > p:last-child {
+  max-width: 34ch;
+  font-size: 1rem;
+}
+.audience-row {
+  border-top: 1px solid var(--color-border);
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: 24px;
+  padding-block: 32px;
+}
+.audience-row h3 {
+  font-size: clamp(1.4rem, 2vw, 1.75rem);
+}
+.audience-row p {
+  margin-top: 12px;
+  font-size: 1rem;
+  max-width: 46ch;
+}
+.technology-section h2 {
+  max-width: 17ch;
+}
+.technology-section .two-column {
+  align-items: center;
+}
+.exploration-diagram {
+  padding: 40px 24px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-alt);
+  position: relative;
+  min-height: 320px;
+  display: grid;
+  align-content: center;
+  gap: 32px;
+}
+.exploration-diagram > p {
+  color: var(--color-text-subtle);
+  font-size: 0.625rem;
+}
+.diagram-cross {
+  position: absolute;
+  right: 12px;
+  top: 4px;
+  color: var(--color-primary-hover);
+  font-size: 1.5rem;
+}
+.diagram-track {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 20px minmax(0, 1fr);
+  gap: 16px 8px;
+  align-items: center;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  overflow-wrap: anywhere;
+}
+.diagram-track span {
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--color-border);
+}
+.diagram-track i {
+  color: var(--color-primary-hover);
+  font-style: normal;
+}
+.diagram-track i:nth-of-type(2) {
+  display: none;
+}
+.diagram-caption {
+  text-align: right;
+  width: 100%;
+}
+.closing-section {
+  background: var(--color-bg-alt);
+  border-top: 1px solid var(--color-border);
+}
+.closing-layout {
+  padding-block: var(--section-space);
+  position: relative;
+}
+.closing-layout h2 {
+  margin-block: 32px;
+  max-width: 20ch;
+}
+.closing-arrow {
+  display: none;
+  position: absolute;
+  right: 0;
+  bottom: 64px;
+  color: var(--color-primary);
+  font: 400 12rem/1 var(--font-display);
+}
+@media (min-width: 768px) {
+  .hero-layout {
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 0;
+  }
+  .hero h1 {
+    font-size: clamp(3.5rem, 7.2vw, 6.75rem);
+    width: 8em;
+  }
+  .hero-description {
+    width: min(100%, 45ch);
+  }
+  .curiosity-graphic {
+    width: 120%;
+    margin-left: -10%;
+    margin-top: -20px;
+  }
+  .hero-bottom {
+    margin-top: 64px;
+  }
+  .philosophy-body {
+    grid-template-columns: 1fr 1fr;
+    margin-left: 25%;
+    gap: 40px;
+  }
+  .principles-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 32px;
+  }
+  .principle {
+    padding-bottom: 0;
+  }
+  .affordable-layout {
+    grid-template-columns: 1.4fr 1fr;
+    gap: 64px;
+    align-items: end;
+  }
+  .audience-section {
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+  }
+  .exploration-diagram {
+    padding: 48px 32px;
+  }
+  .closing-layout h2 {
+    font-size: clamp(3rem, 5vw, 5rem);
+  }
+}
+@media (min-width: 1100px) {
+  .closing-arrow {
+    display: block;
+  }
+  .closing-layout h2 {
+    max-width: 20ch;
+  }
+}
+@media (max-width: 767px) {
+  .hero h1 {
+    font-size: clamp(2.625rem, 10vw, 4.8rem);
+    letter-spacing: -0.05em;
+  }
+  .curiosity-graphic {
+    max-width: 400px;
+    width: 100%;
+    justify-self: center;
+  }
+  .hero-bottom {
+    margin-top: 24px;
+  }
+}

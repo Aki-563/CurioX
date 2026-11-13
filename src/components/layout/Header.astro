@@ -1,0 +1,41 @@
+---
+import TextWordmark from '../ui/TextWordmark.astro';
+import Icon from '../ui/Icon.astro';
+import { navigation } from '../../config/navigation';
+---
+
+<header class="site-header" data-header>
+  <div class="container header-inner">
+    <TextWordmark />
+    <p class="header-note eyebrow">Technology. With curiosity.</p>
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="main-navigation"
+      hidden
+    >
+      <span data-menu-label>Menu</span>
+      <span class="menu-symbol" aria-hidden="true">
+        +
+      </span>
+    </button>
+    <nav id="main-navigation" class="main-navigation" aria-label="Main">
+      {navigation.map(({ href, label }) => (
+        <a
+          tabindex="0"
+          href={href}
+          aria-current={Astro.url.pathname === href ? 'page' : undefined}
+        >
+          {label}
+        </a>
+      ))}
+      <a tabindex="0" class="nav-approach" href="/about/#approach">
+        Our approach <Icon kind="diagonal" />
+      </a>
+    </nav>
+  </div>
+</header>
+<script>
+  import '../../scripts/navigation';
+</script>

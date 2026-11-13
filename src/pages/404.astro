@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { seo } from '../config/seo';
+import ButtonLink from '../components/ui/ButtonLink.astro';
+import '../styles/pages.css';
+---
+
+<BaseLayout {...seo.notFound} noindex>
+  <section class="container error-page">
+    <div class="error-number" aria-hidden="true">
+      404<span>↗</span>
+    </div>
+    <div class="stack">
+      <p class="eyebrow accent">Page not found</p>
+      <h1>
+        A little off
+        <br />
+        the path.
+      </h1>
+      <p class="muted">
+        We couldn't find this page. There's still plenty to explore from here.
+      </p>
+      <ButtonLink href="/">Back to Home</ButtonLink>
+      <a tabindex="0" href="/about/" class="error-about">
+        Or get to know CurioX
+      </a>
+    </div>
+  </section>
+</BaseLayout>
