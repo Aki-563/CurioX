@@ -1,7 +1,7 @@
 # CurioX progress
 
 CURRENT_PHASE: 11
-NEXT_ACTION: Commit and push authorised D025-D035 changes to existing origin main (D036); then user reviews local UI and supplies pending artwork/facts/legal inputs. No website deployment authorised.
+NEXT_ACTION: User reviews local UI and supplies pending product artwork/facts and official logo/legal inputs. D036 source changes pushed to origin main; no website deployment authorised.
 Updated: 2026-11-14 (Asia/Calcutta)
 
 D034 DONE: desktop Products hover opens a viewport-wide panel with container-aligned product links; 14px arrows and optional24px supplied-logo slots. Mobile accordion preserved. Check52 zero diagnostics, production/review builds and static audit pass; navigation+motion36/36 pass42.9s across3engines. Header axe0 violations and no overflow at1024/1440/1920/390; desktop/mobile screenshots inspected in ignored test-artifacts/mega-products/. Final formatting/diff checks recorded in phase11. No new dependencies or remote actions.

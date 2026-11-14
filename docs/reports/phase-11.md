@@ -46,3 +46,5 @@ Tooling: formatter initially missing; frozen forced dev dependency relink restor
 Final D035 verdict: DONE. Navigation24/24 passed33.4s across Chromium/Firefox/WebKit, including ease-in/out/reduced motion, arrow absence, fullwidth hover, desktop keyboard/outside/Escape and mobile geometry/focus/scroll checks. Next: user reviews http://127.0.0.1:4321/. Optional product artwork/facts and official logo/legal inputs pending.
 
 D036: User authorises commit/push of current D025-D035 changes to existing origin main. Fetched origin/main successfully; before commit HEAD and origin/main both d4b6bb4, divergence0/0. Existing D035 validation remains the current code evidence; no code changes in this publication step. Generated artifacts/dependencies remain ignored. Website deployment remains unauthorised.
+
+D036 DONE: source commit f0940c9 pushed successfully to origin main (d4b6bb4..f0940c9). No force push, website deployment or DNS/account change. Follow-up documentation records this observed outcome.
