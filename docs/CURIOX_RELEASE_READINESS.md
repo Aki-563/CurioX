@@ -1,5 +1,11 @@
 # CurioX local release candidate
 
+2026-11-14 D030 amendment: selected glass/reveal effects and Antigravity-inspired full-screen mobile/tablet navigation are implemented locally. Current browser regression114/114 passes; new screenshot/production-performance evidence is in the D030 phase-11 amendment. Header Home is the wordmark, Products expands to Smriti/All products. No product details/assets invented. Earlier manifests/phase baseline numbers remain historical; no new publication authorisation.
+
+2026-11-14 D028 amendment: Home now shows products directly instead of six long narrative sections; About/Contact/footer are concise and Our approach is removed from header. User approved this scope. Fresh build/check/audit and regression evidence are in phase-11.md; screenshots in `test-artifacts/simple-site/`. Old release manifests/performance figures below remain historical. Optional Smriti artwork/facts and official logo/legal inputs still await the user; no remote publication.
+
+2026-11-14 amendment (D027): local Products listing now implemented with an informational Smriti card and no invented features/status/download link. Header/footer navigation, sitemap, metadata, route audits and browser coverage include `/products/`. Artwork and optional product details remain pending. See the dated phase-11 amendment for fresh QA; the original release manifest, screenshots and performance figures below are historical and are not a refreshed checksum/performance certification of this build. No remote publication is authorised.
+
 2026-11-13 (Asia/Calcutta). Local RC ready for user review. Launch held for official asset/legal/visual approval. Nothing deployed, published, committed, pushed or connected to an external account. Phases12–13 NOT_STARTED/NOT AUTHORISED.
 
 Phases00–04 and06–11 are locally DONE. Phase05 has11/12 tasks done; P05.10 remains BLOCKED—USER INPUT: LEGAL CONTENT PENDING. Across authorised phases:123 DONE,1 optional SKIPPED_WITH_REASON (P07.03 reveal animation unnecessary),1 BLOCKED. All125 task IDs retained in progress and12 phase reports. Unavailable methods documented under evidence rule, never claimed as passed.

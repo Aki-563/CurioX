@@ -657,3 +657,50 @@ Avoid needless abstractions and empty directories. Do not create legal/product/b
 - Sitemap requirements: https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap
 
 **End of master plan.**
+
+## Approved scope delta — 2026-11-14 (D025/D026)
+
+The user's newer instruction requests a significantly simpler site and a Products listing inspired by https://getartcraft.com/apps. Remove the header phrase “Technology. With curiosity.” now. Further section deletions are recommendations for review, not approved implementation choices. See `docs/CURIOX_SIMPLIFICATION_PLAN.md` for the reviewed inventory and proposed structure.
+
+The Products listing is now within local planning scope, superseding the original blanket catalog deferral for that purpose. Smriti is the first named product; the user will supply its cover image and logo later. Product functionality, description, release status and destination remain unprovided: BLOCKED—USER INPUT for factual card content. Do not invent those details or add an empty indexed page, fake CTA or unsupported individual product route. `/products/smriti` remains deferred. This delta does not authorise executing other Phase 13 tasks or any remote/publication work.
+
+### Implementation approval — 2026-11-14 (D027)
+
+User explicitly approved building `/products/` now with a simple Smriti card, followed by artwork later. This supersedes the planning-only restriction above: implement an informational text-first card containing the approved name, with no invented purpose/status/link; add the route to navigation, metadata, sitemap and verification inventories. Missing optional details do not block this authorised minimal local page. All other bulk section deletions remain recommendations; no individual Smriti route or remote changes are authorised.
+
+### Simplification implementation — 2026-11-14 (D028)
+
+The user now explicitly authorises replacing the quoted long Home narrative with a Products section, simplifying About, removing the header Our approach button, cutting repeated slogans and using very simple English across the site. This supersedes the original multi-section requirements in Phases04/05 and the prior recommendations-only restriction. Home: approved tagline and short factual introduction, Products/Smriti section, compact email contact. About: concise company introduction, easy-to-use/affordable mission and one audience sentence. Shared footer and Contact are reduced to useful information/actions. Keep the separate Products route, exact brand/tagline, approved email, palette, fonts and square buttons. Remove only styles made unused by these edits; preserve unrelated work. Validate responsive layout, product heading hierarchy, anchors, navigation, accessibility and static output. No product facts/assets, deployment or remote changes are invented or authorised.
+
+### Reference motion inventory and footer correction - 2026-11-14 (D029)
+
+User requests analysis/listing of the public ArtCraft Apps animations and blur effects before adding them. Findings and relative (not benchmarked) costs are recorded in docs/CURIOX_MOTION_REFERENCE_AUDIT.md. Header/reveal changes remain proposals at this gate. Fix the reported short-page footer gap locally using a full-viewport flex column shell and expanding main; preserve normal footer flow and existing motion behavior. No new runtime dependency or remote action is authorised.
+
+### Approved glass/menu/reveal implementation - 2026-11-14 (D030)
+
+The user now authorises transparent glass header, blur-to-clear and staggered reveals from the prior inventory. Mobile/smaller navigation should follow Antigravity's compact top bar, close toggle, divided rows and expandable Products, adapted to CurioX and filling the entire viewport when open. This overrides D029's analysis-first gate and the old navigation style. Menu toggle/inset bar may use the reference's pill/rounded treatment as a specific exception to square controls; other buttons/cards remain square. Use actual CurioX routes/product names, preserve missing-fact constraints and native no-JS/reduced-motion accessibility, trap focus/inert background only while the mobile panel is open, and retain bottom footer behavior. No publication or new product detail route authorised.
+
+### Header alignment correction - 2026-11-14 (D031)
+
+User requests removing the repeated Products heading and matching closed/open mobile logo and menu-toggle placement. Keep one disclosure heading and preserve the same control geometry through closed/open/Products-expanded states. Open menu remains full screen. This refines D030's top-row geometry; no other scope or publication change.
+
+### Scroll-aware header - 2026-11-14 (D032)
+
+User explicitly requests the header slide upward out of view during scrolling, referring to Google Antigravity. Implement direction-aware hiding on downward scroll and return on upward scroll/top, preserving visible keyboard focus and active mobile/Products menus. Keep D031 control alignment and D030 glass/reveal behavior. Honour reduced motion; use a small passive, frame-throttled handler without new dependencies. Local development only.
+
+### Dark menu control - 2026-11-14 (D033)
+
+Use existing dark-violet surface/border and violet icon tokens for the mobile menu/close control instead of its white background. Preserve size, position, shape, focus treatment and behavior. Local color-only refinement.
+
+### Full-width Products hover panel - 2026-11-14 (D034)
+
+Desktop fine-pointer Products hover opens a full-viewport-width panel below the header, with container-aligned product links and smaller14px arrows/optional24px supplied-logo slots. Keep native keyboard/touch activation, outside/Escape dismissal, mobile full-screen accordion, uniform control geometry and scroll-header behavior. This supersedes the narrow desktop dropdown in D030. No new product facts/assets or remote scope.
+
+
+### Products hover easing - 2026-11-14 (D035)
+
+Add200ms ease-in-out fade/8px slide on desktop Products opening/hover closing, remove header dropdown arrows. Preserve reduced-motion/native keyboard/mobile behavior; no remote scope change.
+
+### Source publication approval - 2026-11-14 (D036)
+
+User authorises committing current D025-D035 source/test/documentation changes and pushing main to the existing CurioX GitHub origin. No website deployment or DNS/account changes authorised.

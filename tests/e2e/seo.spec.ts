@@ -5,7 +5,7 @@ test('public metadata, schema and crawl inventory are consistent', async ({
   request,
 }) => {
   const titles = new Set<string>();
-  for (const path of ['/', '/about/', '/contact/']) {
+  for (const path of ['/', '/products/', '/about/', '/contact/']) {
     await page.goto(path);
     const title = await page.title();
     expect(titles.has(title)).toBe(false);
@@ -49,10 +49,10 @@ test('public metadata, schema and crawl inventory are consistent', async ({
     expect(response.headers()['content-type']).toContain('image/png');
   }
   const sitemap = await (await request.get('/sitemap.xml')).text();
-  expect((sitemap.match(/<loc>/g) ?? []).length).toBe(3);
-  for (const path of ['/', '/about/', '/contact/'])
+  expect((sitemap.match(/<loc>/g) ?? []).length).toBe(4);
+  for (const path of ['/', '/products/', '/about/', '/contact/'])
     expect(sitemap).toContain(`https://curiox.in${path}</loc>`);
-  expect(sitemap).not.toMatch(/review|404|products|privacy/);
+  expect(sitemap).not.toMatch(/review|404|smriti|privacy/);
   expect(await (await request.get('/robots.txt')).text()).toContain(
     'Sitemap: https://curiox.in/sitemap.xml',
   );

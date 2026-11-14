@@ -14,3 +14,12 @@ Commands: npx --yes pnpm@12.18.0 check exit 0 (28 files, zero diagnostics); buil
 Evidence: test-artifacts/phase-03/{home,about,contact,404}-{320,390,768,1440,1920}.png. Inspected home at 320 and 1440: header/footer fit, square toggle, clear hierarchy; page body still foundation skeleton pending 04/05. Gallery axe remains zero findings. Keyboard focus/skip/Escape/history/no-JS tests pass. No performance measurements claimed here.
 
 Open user decisions D009–D012 unchanged. Resume: Phase 04 homepage visual narrative and first performance baseline.
+
+
+## 2026-11-14 continuity recovery
+
+This file was absent at the start of D035. Restored the committed historical baseline without overwriting an existing file. Later D025-D034 approvals and verification remain in CURIOX_MASTER_PLAN.md and CURIOX_PROGRESS.md; this restoration does not claim recovery of the missing uncommitted report wording.
+
+## 2026-11-14 - D035 navigation refinement
+
+Header dropdown arrows removed. Desktop hover panel opens/closes with200ms ease-in-out opacity and8px translation. Reduced motion/native keyboard/mobile behavior preserved. Actual verification is recorded in phase11 D035 amendment; no dependency or remote change.

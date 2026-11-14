@@ -1,0 +1,44 @@
+---
+import type { Product } from '../../config/products';
+interface Props {
+  product: Product;
+  headingLevel?: 2 | 3;
+}
+const { product, headingLevel = 2 } = Astro.props;
+const Heading = headingLevel === 3 ? 'h3' : 'h2';
+---
+
+<article
+  id={product.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}
+  data-reveal
+  class:list={['product-card', { 'product-card--illustrated': product.cover }]}
+>
+  {product.cover && (
+    <img
+      class="product-cover"
+      src={product.cover}
+      alt=""
+      width="1200"
+      height="750"
+    />
+  )}
+  <div class="product-card-body">
+    <div class="product-card-label">
+      <p class="eyebrow">CurioX product</p>
+      {product.status && <span class="product-status">{product.status}</span>}
+    </div>
+    <div class="product-title">
+      {product.logo && <img src={product.logo} alt="" width="48" height="48" />}
+      <Heading>{product.name}</Heading>
+    </div>
+    {product.description && (
+      <p class="muted product-description">{product.description}</p>
+    )}
+    {product.href && (
+      <a tabindex="0" class="product-link" href={product.href}>
+        Explore {product.name}
+        <span aria-hidden="true">↗</span>
+      </a>
+    )}
+  </div>
+</article>

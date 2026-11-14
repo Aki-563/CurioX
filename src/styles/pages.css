@@ -1,147 +1,43 @@
-.about-hero h1 {
-  margin-block: 40px 48px;
-  font-size: clamp(2.75rem, 7.2vw, 6.75rem);
+.simple-page {
+  padding-block: clamp(48px, 7vw, 96px);
+  max-width: 1040px;
 }
-.about-hero-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  gap: 24px;
+.simple-page h1 {
+  font-size: clamp(2.75rem, 7vw, 6rem);
 }
-.about-hero-bottom p {
-  max-width: 58ch;
+.page-lead {
+  margin-top: 24px;
+  max-width: 42ch;
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
   color: var(--color-text-muted);
 }
-.about-down {
-  min-width: 52px;
-  height: 52px;
-  border: 1px solid var(--color-text-subtle);
+.about-details {
   display: grid;
-  place-content: center;
-  font-size: 1.5rem;
-  text-decoration: none;
-}
-.question-panel {
-  background: var(--color-bg-alt);
-  border-block: 1px solid var(--color-border);
-}
-.question-inner {
-  min-height: 380px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  position: relative;
-  padding-block: 32px;
-  align-items: center;
-}
-.question-inner > .eyebrow {
-  color: var(--color-text-subtle);
-  grid-column: 1 / -1;
-  font-size: 0.625rem;
-}
-.question-word {
-  font: 600 clamp(4rem, 16vw, 15rem)/1 var(--font-display);
-  letter-spacing: -0.075em;
-}
-.question-word > span {
-  color: var(--color-primary);
-}
-.question-axis {
-  display: grid;
-  gap: 16px;
-  color: var(--color-text-muted);
-  font-size: 0.75rem;
-}
-.question-axis span {
-  border-bottom: 1px solid var(--color-border);
-  padding-bottom: 8px;
-}
-.question-axis span:nth-child(2) {
-  margin-left: 16px;
-}
-.question-axis span:nth-child(3) {
-  margin-left: 32px;
-}
-.question-marker {
-  position: absolute;
-  top: 24px;
-  right: 0;
-  color: var(--color-primary-hover);
-  font-size: 1.5rem;
-}
-.about-purpose {
-  display: grid;
-  gap: 40px;
-}
-.about-statement {
-  font: 500 clamp(1.5rem, 2.4vw, 2.25rem)/1.4 var(--font-display);
-  letter-spacing: -0.03em;
-}
-.approach-section {
-  background: var(--color-bg-alt);
-}
-.approach-row {
-  display: grid;
-  gap: 16px;
-  padding-block: 32px;
+  gap: 32px;
+  padding-block: 40px;
+  margin-top: 40px;
   border-top: 1px solid var(--color-border);
 }
-.approach-row p {
-  max-width: 53ch;
+.about-details h2 {
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+}
+.about-details p {
+  max-width: 36ch;
+  margin-top: 12px;
   font-size: 1rem;
-}
-.about-people {
-  display: grid;
-  gap: 48px;
-}
-.about-people .stack > p:last-child {
-  max-width: 53ch;
-}
-.people-index {
-  display: grid;
-  align-content: center;
-}
-.people-index span {
-  font: 500 clamp(1.5rem, 2.4vw, 2.25rem)/1.3 var(--font-display);
-  letter-spacing: -0.035em;
-  padding-block: 20px;
-  border-top: 1px solid var(--color-border);
-}
-.people-index span:last-child {
-  border-bottom: 1px solid var(--color-border);
-}
-.about-future {
-  background: var(--color-bg-alt);
-}
-.contact-intro {
-  min-height: 70vh;
-}
-.contact-layout {
-  display: grid;
-  gap: 48px;
-  align-items: center;
-}
-.contact-layout h1 {
-  font-size: clamp(2.75rem, 6vw, 5.75rem);
-}
-.contact-panel {
-  border: 1px solid var(--color-border);
-  background: var(--color-bg-alt);
-  padding: clamp(24px, 3vw, 48px);
-}
-.contact-panel h2 {
-  font-size: clamp(1.75rem, 3vw, 2.5rem);
 }
 .contact-email {
   display: flex;
   justify-content: space-between;
   gap: 16px;
   align-items: center;
-  border-bottom: 1px solid var(--color-text-subtle);
+  border-bottom: 1px solid var(--color-border);
   min-height: 52px;
-  padding-block: 12px;
+  padding-block: 16px;
+  margin-top: 32px;
+  max-width: 480px;
   color: var(--color-link);
-  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  font-size: clamp(0.875rem, 2vw, 1.25rem);
   text-decoration: none;
 }
 .contact-email span {
@@ -150,18 +46,9 @@
 .contact-email svg {
   flex-shrink: 0;
 }
-.contact-panel .contact-note {
+.contact-note {
+  margin-top: 12px;
   font-size: var(--text-small);
-}
-.contact-more {
-  border-top: 1px solid var(--color-border);
-  margin-top: 64px;
-  padding-top: 32px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 24px;
-  align-items: center;
-  justify-content: space-between;
 }
 .error-page {
   display: grid;
@@ -198,58 +85,9 @@
   font-size: 0.875rem;
 }
 @media (min-width: 768px) {
-  .contact-layout {
-    grid-template-columns: 1.2fr 1fr;
-    gap: 64px;
-  }
-  .question-inner {
-    grid-template-columns: 1.25fr 1fr;
-    min-height: 500px;
-  }
-  .question-axis {
-    max-width: 400px;
-    font-size: 0.875rem;
-  }
-  .about-purpose {
-    grid-template-columns: 1fr 1fr;
-    gap: 64px;
-  }
-  .approach-row {
-    grid-template-columns: 60px 1fr 1.25fr;
-    gap: 32px;
-    align-items: baseline;
-    padding-block: 40px;
-  }
-  .approach-row h3 {
-    font-size: clamp(1.4rem, 2vw, 1.75rem);
-  }
-  .about-people {
-    grid-template-columns: 1.4fr 1fr;
-    gap: 96px;
-    align-items: center;
-  }
+  .about-details,
   .error-page {
-    grid-template-columns: 1.1fr 1fr;
-    gap: 64px;
-  }
-}
-@media (max-width: 479px) {
-  .contact-email {
-    font-size: 0.875rem;
-    gap: 8px;
-  }
-  .about-hero-bottom {
-    align-items: start;
-    flex-direction: column;
-  }
-  .question-inner {
-    grid-template-columns: 1fr;
-    min-height: 360px;
-  }
-  .question-axis {
-    grid-template-columns: 1fr;
-    max-width: 230px;
-    width: 100%;
-    justify-self: end;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
   }
 }

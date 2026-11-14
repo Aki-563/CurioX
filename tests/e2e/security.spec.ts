@@ -4,7 +4,7 @@ test('release output runs under actual prepared CSP and static headers', async (
   page,
   request,
 }) => {
-  for (const path of ['/', '/about/', '/contact/']) {
+  for (const path of ['/', '/products/', '/about/', '/contact/']) {
     const errors: string[] = [];
     page.on('pageerror', (error) => errors.push(error.message));
     await page.addInitScript(() => {

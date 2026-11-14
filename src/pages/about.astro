@@ -2,162 +2,29 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { seo } from '../config/seo';
 import ButtonLink from '../components/ui/ButtonLink.astro';
-import SectionHeading from '../components/ui/SectionHeading.astro';
 import '../styles/pages.css';
-const approach = [
-  {
-    title: 'Start with the need.',
-    copy: 'A useful idea begins with understanding the people it could help. We want the question to be clear before choosing the technology.',
-  },
-  {
-    title: 'Think beyond the tool.',
-    copy: 'Emerging tools and AI offer new possibilities. Our interest is in understanding them, learning their limits and finding practical uses.',
-  },
-  {
-    title: 'Keep the door open.',
-    copy: 'Approachability and affordability guide our ambition. Good software should make the next step easier to understand and take.',
-  },
-];
 ---
 
 <BaseLayout {...seo.about}>
-  <section class="container about-hero section" aria-labelledby="about-heading">
-    <p class="eyebrow accent">About CurioX / A closer look</p>
+  <section class="container simple-page" aria-labelledby="about-heading">
     <h1 id="about-heading">
-      A curious mind.
-      <br />
-      <span class="muted">A useful direction.</span>
+      About CurioX<span class="accent">.</span>
     </h1>
-    <div class="about-hero-bottom">
-      <p>
-        CurioX explores emerging technology and builds useful software. Behind
-        that work is a simple instinct: ask why, understand more and make
-        something that helps.
-      </p>
-      <a
-        tabindex="0"
-        href="#purpose"
-        class="about-down"
-        aria-label="Discover our purpose"
-      >
-        ↓
-      </a>
-    </div>
-  </section>
-
-  <div class="question-panel" aria-hidden="true">
-    <div class="container question-inner">
-      <span class="eyebrow">The question behind the work</span>
-      <span class="question-word">
-        Why<span>?</span>
-      </span>
-      <div class="question-axis">
-        <span>Curiosity</span>
-        <span>Understanding</span>
-        <span>Possibility</span>
+    <p class="page-lead">
+      We explore new technology and build useful software.
+    </p>
+    <div class="about-details" data-reveal-group>
+      <div id="purpose" data-reveal>
+        <h2>Our goal</h2>
+        <p class="muted">Make software easy to use and affordable.</p>
       </div>
-      <span class="question-marker">+</span>
-    </div>
-  </div>
-
-  <section
-    class="container section"
-    id="purpose"
-    aria-labelledby="purpose-heading"
-  >
-    <SectionHeading number="01" label="Our purpose" id="purpose-heading">
-      Make useful technology more approachable.
-    </SectionHeading>
-    <div class="about-purpose">
-      <p class="about-statement">
-        Useful to more people.
-        <br />
-        <span class="accent">Within reach of more minds.</span>
-      </p>
-      <div class="stack muted">
-        <p>
-          Technology opens possibilities when people can understand and use it.
-          Our purpose is to make useful software more approachable and
-          affordable.
-        </p>
-        <p>
-          That means staying curious about what people need, being thoughtful
-          about what we build and keeping complexity in perspective.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section
-    class="approach-section rule"
-    id="approach"
-    aria-labelledby="approach-heading"
-  >
-    <div class="container section">
-      <SectionHeading number="02" label="Our approach" id="approach-heading">
-        Explore with intent.
-        <br />
-        Build with purpose.
-      </SectionHeading>
-      <div class="approach-list">
-        {approach.map(({ title, copy }, index) => (
-          <article class="approach-row">
-            <span class="eyebrow accent" aria-hidden="true">
-              0{index + 1}
-            </span>
-            <h3>{title}</h3>
-            <p class="muted">{copy}</p>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section
-    class="container section about-people"
-    aria-labelledby="about-people-heading"
-  >
-    <div class="stack">
-      <p class="editorial-label eyebrow">
-        <span>03</span>
-        <span>A wider perspective</span>
-      </p>
-      <h2 id="about-people-heading">
-        Many kinds of minds.
-        <br />
-        Room for all of them.
-      </h2>
-      <p class="muted">
-        Students finding their way. Developers exploring an idea. Everyday users
-        looking for clarity. Small businesses solving practical problems. These
-        perspectives help shape what useful technology means to us.
-      </p>
-    </div>
-    <div class="people-index" aria-hidden="true">
-      <span>Students</span>
-      <span>Developers</span>
-      <span>Everyday users</span>
-      <span>Small businesses</span>
-    </div>
-  </section>
-
-  <section class="about-future rule">
-    <div class="container section two-column">
-      <h2>
-        Keep learning.
-        <br />
-        <span class="accent">Keep making.</span>
-      </h2>
-      <div class="stack">
+      <div data-reveal>
+        <h2>Who we build for</h2>
         <p class="muted">
-          Our ambition is to keep exploring and turn what we learn into software
-          that helps. There's more to understand, and that is a good place to
-          begin.
+          Students, developers, everyday users and small businesses.
         </p>
-        <ButtonLink href="/" variant="secondary">
-          Back to CurioX
-        </ButtonLink>
       </div>
     </div>
+    <ButtonLink href="/products/">View products</ButtonLink>
   </section>
 </BaseLayout>

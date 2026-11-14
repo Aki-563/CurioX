@@ -1,5 +1,16 @@
 # CurioX performance evidence
 
+## 2026-11-14 D030 — Glass/menu/reveal refresh
+
+Current Home production build measured locally after functional tests finished. Commands: secure preview on4322; `node scripts/performance.mjs 11-glass --runs=3 --home`, followed by an ignored mobile-only copy of the same helper for `11-glass-mobile-final --runs=3 --home`. Initial mobile batch overlapped the separate network audit and was retained but excluded; selected results use three desktop runs after that audit and three fresh mobile runs with no concurrent agent browser tests. Raw selected paths/values are indexed in `test-artifacts/glass-navigation/performance-final.json`. Same existing Lighthouse simulated mobile/desktop settings; headless Chromium with helper's disable-GPU flag. These scores measure lab loading, not physical-device scrolling/GPU blur frame rate or field INP.
+
+| Home profile | LCP median ms (min–max) | TBT | CLS | Lighthouse transfer bytes | P/A/BP/SEO |
+| --- | --- | --- | --- | --- | --- |
+| Mobile |907.123 (905.039–1076.841) |0 in all3 |0 |86386 |100/100/100/100 in all3 |
+| Desktop |384.957 (375.835–396.511) |0 in all3 |0 |92620 |100/100/100/100 in all3 |
+
+`node scripts/network-audit.mjs` exit0 against prepared gzip/CSP server. Runtime JS gzip accounting: external core1796bytes + optional Lenis5461 + inline navigation equivalent839 = conservative8096bytes desktop,2635bytes mobile/reduced. Under the40KB budget; loading transfer under350KB. New reveals use native IntersectionObserver/Web Animations, no GSAP/framework dependency and no permanent reveal RAF. Small viewport uses2px content blur versus4px desktop; header8px blur is constant. No full-page blur layer. Existing conditional Lenis/native-mobile policy remains. Event Timing samples are thresholded local interactions, not field INP. Original Phase10 figures below describe the earlier build and should not be treated as current byte/hash values.
+
 2026-11-13; all results local lab on this Windows/Node24 host. No field INP, CDN caching, public traffic or Cloudflare results exist.
 
 Budgets: Lighthouse categories ≥95, LCP≤2.5s, CLS≤0.1, TBT≤150ms, compressed JS≤40KB, initial above-fold transfer≤350KB. INP≤200ms is a future field target, not a lab certification.

@@ -1,13 +1,13 @@
 ---
 import TextWordmark from '../ui/TextWordmark.astro';
-import Icon from '../ui/Icon.astro';
 import { navigation } from '../../config/navigation';
+import { products } from '../../config/products';
+import '../../styles/navigation.css';
 ---
 
-<header class="site-header" data-header>
+<header class="site-header" data-header data-lenis-prevent>
   <div class="container header-inner">
     <TextWordmark />
-    <p class="header-note eyebrow">Technology. With curiosity.</p>
     <button
       class="menu-toggle"
       type="button"
@@ -15,24 +15,68 @@ import { navigation } from '../../config/navigation';
       aria-controls="main-navigation"
       hidden
     >
-      <span data-menu-label>Menu</span>
+      <span class="sr-only" data-menu-label>
+        Menu
+      </span>
       <span class="menu-symbol" aria-hidden="true">
-        +
+        <i></i>
+        <i></i>
+        <i></i>
       </span>
     </button>
     <nav id="main-navigation" class="main-navigation" aria-label="Main">
-      {navigation.map(({ href, label }) => (
-        <a
-          tabindex="0"
-          href={href}
-          aria-current={Astro.url.pathname === href ? 'page' : undefined}
-        >
-          {label}
-        </a>
-      ))}
-      <a tabindex="0" class="nav-approach" href="/about/#approach">
-        Our approach <Icon kind="diagonal" />
-      </a>
+      {navigation
+        .filter(({ href }) => href !== '/')
+        .map(({ href, label }) =>
+          href === '/products/' ? (
+            <details class="products-disclosure">
+              <summary
+                tabindex="0"
+                aria-current={Astro.url.pathname === href ? 'page' : undefined}
+              >
+                Products <span class="nav-chevron" aria-hidden="true"></span>
+              </summary>
+              <div class="products-dropdown">
+                <div class="container products-dropdown-inner">
+                  <div class="products-list">
+                    {products.map((product) => (
+                      <a
+                        tabindex="0"
+                        class="dropdown-product"
+                        href={
+                          product.href ??
+                          `/products/#${product.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`
+                        }
+                      >
+                        {product.logo && (
+                          <img
+                            class="product-nav-icon"
+                            src={product.logo}
+                            alt=""
+                            width="24"
+                            height="24"
+                          />
+                        )}
+                        <span class="product-nav-name">{product.name}</span>
+                      </a>
+                    ))}
+                  </div>
+                  <a tabindex="0" class="products-overview" href="/products/">
+                    All products
+                  </a>
+                </div>
+              </div>
+            </details>
+          ) : (
+            <a
+              tabindex="0"
+              href={href}
+              aria-current={Astro.url.pathname === href ? 'page' : undefined}
+            >
+              {label}
+            </a>
+          ),
+        )}
     </nav>
   </div>
 </header>

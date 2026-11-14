@@ -1,4 +1,77 @@
-import { test, expect } from '@playwright/test';
+﻿import { test, expect } from '@playwright/test';
+
+test('secondary content reveals once with blur and stagger; reduced motion cancels effects', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 1200 });
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/about/');
+  const items = page.locator('.about-details > div');
+  await expect(items).toHaveCount(2);
+  expect(
+    await items.first().evaluate((el) => getComputedStyle(el).filter),
+  ).toBe('none');
+  const pendingSamples = page.waitForFunction(() => {
+    const animations = [
+      ...document.querySelectorAll('.about-details > div'),
+    ].map((el) => el.getAnimations()[0]);
+    if (animations.length !== 2 || animations.some((animation) => !animation))
+      return null;
+    return animations.map((animation) => {
+      animation.pause();
+      return {
+        delay: animation.effect?.getTiming().delay,
+        frames: (animation.effect as KeyframeEffect | null)?.getKeyframes(),
+      };
+    });
+  });
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  const samples = (await (await pendingSamples).jsonValue())!;
+  expect(samples[0].delay).toBe(0);
+  expect(samples[1].delay).toBe(75);
+  expect(samples[0].frames?.[0].filter).toBe('blur(4px)');
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await expect
+    .poll(() => items.first().evaluate((el) => el.getAnimations().length))
+    .toBe(0);
+  expect(
+    await items.first().evaluate((el) => getComputedStyle(el).opacity),
+  ).toBe('1');
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  expect(await items.first().evaluate((el) => el.getAnimations().length)).toBe(
+    0,
+  );
+});
+
+test('glass header keeps its blur; product navigation works without JavaScript', async ({
+  page,
+  browser,
+}) => {
+  await page.goto('/');
+  expect(
+    await page
+      .locator('header')
+      .evaluate((el) => getComputedStyle(el).backdropFilter),
+  ).toBe('blur(8px)');
+  const context = await browser.newContext({
+    javaScriptEnabled: false,
+    viewport: { width: 390, height: 844 },
+  });
+  const fallback = await context.newPage();
+  await fallback.goto('/');
+  await fallback.locator('header summary').click();
+  await fallback
+    .getByRole('navigation', { name: 'Main', exact: true })
+    .getByRole('link', { name: 'Smriti', exact: true })
+    .click();
+  await expect(fallback).toHaveURL(/\/products\/#smriti$/);
+  expect(
+    await fallback
+      .locator('#smriti')
+      .evaluate((el) => getComputedStyle(el).opacity),
+  ).toBe('1');
+  await context.close();
+});
 
 test('desktop optional smoothing, native hash/history and preference cleanup', async ({
   page,
@@ -7,15 +80,15 @@ test('desktop optional smoothing, native hash/history and preference cleanup', a
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.goto('/');
   await expect(page.locator('html')).toHaveAttribute('data-scroll', 'smooth');
-  await page.getByRole('link', { name: 'How we think' }).click();
-  await expect(page).toHaveURL(/#principles$/);
+  await page.getByRole('link', { name: 'View products', exact: true }).click();
+  await expect(page).toHaveURL(/#products$/);
   const top = await page
-    .locator('#principles')
+    .locator('#products')
     .evaluate((el) => el.getBoundingClientRect().top);
   expect(top).toBeGreaterThanOrEqual(87);
   expect(top).toBeLessThan(160);
   await page.goBack();
-  await expect(page).not.toHaveURL(/#principles$/);
+  await expect(page).not.toHaveURL(/#products$/);
   await expect.poll(() => page.evaluate(() => scrollY)).toBe(0);
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await expect(page.locator('html')).toHaveAttribute('data-scroll', 'native');

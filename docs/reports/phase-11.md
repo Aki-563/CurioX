@@ -29,3 +29,20 @@ Limits: no physical devices, actual NVDA/VoiceOver narration or browser-menu zoo
 Final status:123/125local tasks DONE,1optional skip(P07.03),1BLOCKED—USER INPUT(P05.10).11local phases DONE;05partial/blocked. User review of screenshots and missing official logo/legal copy is next.12/13 remain NOT_STARTED and NOT AUTHORISED. No deployment, staging, Git commit/push, external account access, credentials or DNS changes. Local QA servers stopped for handoff; restart instructions in README.
 
 Final handoff verification: check48files zero diagnostics; lint/format/static audit exit0. Ports4321 and4322 confirmed stopped. Inventory90created files including27application source files;19release files;75final screenshots. Optional empty setup directories retained after cleanup command was rejected; handoff files generated without deletion. No unrelated files modified.
+
+
+## 2026-11-14 continuity recovery
+
+This file was absent at the start of D035. Restored the committed historical baseline without overwriting an existing file. Later D025-D034 approvals and verification remain in CURIOX_MASTER_PLAN.md and CURIOX_PROGRESS.md; this restoration does not claim recovery of the missing uncommitted report wording.
+
+## 2026-11-14 - Products hover easing (D035)
+
+Scope: Header.astro removes dropdown decorative arrows; navigation.ts adds200ms ease-in-out opacity/8px translation on desktop opening and hover departure closing; navigation.css eases link colors. Rapid reentry/focus cancels pending animation, immediate dismissal/lifecycle cancels it, reduced-motion skips/cancels, mobile native accordion unchanged. Navigation regression verifies opening/closing easing and reduced motion; desktop-width test now asserts arrow absence.
+
+Observed check exit0:52files zero diagnostics; build/build:review/static audit exit0; targeted formatting and git diff whitespace pass. Screenshot/axe probe exit0 at1024/1440/1920/390: no overflow, zero header tested-rule violations; current desktop screenshot inspected, no dropdown arrows. Evidence test-artifacts/mega-products/ (ignored). No new performance claims/full suite rerun. Local user dev4321 preserved; no remote work.
+
+Tooling: formatter initially missing; frozen forced dev dependency relink restored364 packages without package/lockfile change. Four documentation files were already absent at start; restored only absent files from committed baseline, explicitly noting unrecovered uncommitted wording and preserving later approvals from master/progress. First animation test expected numeric opacity while browsers serialize strings; normalized. Subsequent test missed a200ms closing animation under cross-browser scheduling; test now pauses at animation creation for deterministic inspection. These are test harness corrections, not claimed application defects. Final browser result appended below.
+
+Final D035 verdict: DONE. Navigation24/24 passed33.4s across Chromium/Firefox/WebKit, including ease-in/out/reduced motion, arrow absence, fullwidth hover, desktop keyboard/outside/Escape and mobile geometry/focus/scroll checks. Next: user reviews http://127.0.0.1:4321/. Optional product artwork/facts and official logo/legal inputs pending.
+
+D036: User authorises commit/push of current D025-D035 changes to existing origin main. Fetched origin/main successfully; before commit HEAD and origin/main both d4b6bb4, divergence0/0. Existing D035 validation remains the current code evidence; no code changes in this publication step. Generated artifacts/dependencies remain ignored. Website deployment remains unauthorised.

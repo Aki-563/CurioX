@@ -2,243 +2,59 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { seo } from '../config/seo';
 import { site } from '../config/site';
+import { products } from '../config/products';
 import ButtonLink from '../components/ui/ButtonLink.astro';
-import SectionHeading from '../components/ui/SectionHeading.astro';
-import Badge from '../components/ui/Badge.astro';
-import CuriosityGraphic from '../components/sections/CuriosityGraphic.astro';
+import ProductCard from '../components/sections/ProductCard.astro';
+import '../styles/products.css';
 import '../styles/home.css';
-const principles = [
-  {
-    name: 'Explore',
-    copy: 'Ask better questions. Follow new ideas. Understand what technology can make possible.',
-  },
-  {
-    name: 'Build',
-    copy: 'Turn understanding into useful software. Start with a real need and keep learning along the way.',
-  },
-  {
-    name: 'Make Accessible',
-    copy: 'Bring clarity to complexity. Make useful technology more approachable and affordable.',
-  },
-];
-const audiences = [
-  {
-    name: 'Students',
-    copy: 'Room to learn, experiment and turn a first question into a new possibility.',
-  },
-  {
-    name: 'Developers',
-    copy: 'A shared curiosity for how things work — and how they could work better.',
-  },
-  {
-    name: 'Everyday users',
-    copy: 'Technology that feels understandable, useful and within reach.',
-  },
-  {
-    name: 'Small businesses',
-    copy: 'A practical perspective on software, with everyday needs at the centre.',
-  },
-];
 ---
 
 <BaseLayout {...seo.home}>
   <section class="hero" aria-labelledby="hero-heading">
     <div class="container hero-layout">
-      <div class="hero-copy">
-        <p class="eyebrow hero-eyebrow">
-          <span aria-hidden="true"></span>Curiosity-driven technology & software
-        </p>
-        <h1 id="hero-heading" data-tagline-status={site.tagline.status}>
-          Curious Minds. <br />
-          <span class="hero-midline">Creating</span> <br />
-          <span class="accent">Tomorrow.</span>
-        </h1>
-        <p class="hero-description">
-          We're CurioX. We explore emerging technology and build useful software
-          — with a belief that possibility should be within reach.
-        </p>
-        <div class="hero-actions">
-          <ButtonLink href="/about/">Explore CurioX</ButtonLink>
-          <a tabindex="0" class="hero-text-link" href="#principles">
-            How we think <span aria-hidden="true">↓</span>
-          </a>
-        </div>
-      </div>
-      <CuriosityGraphic />
-      <div class="hero-bottom">
-        <p class="eyebrow">A question today. A possibility tomorrow.</p>
-        <p class="eyebrow">Explore. Build. Make accessible.</p>
-      </div>
-    </div>
-  </section>
-
-  <section
-    class="container section philosophy"
-    aria-labelledby="philosophy-heading"
-  >
-    <SectionHeading
-      number="01"
-      label="Our starting point"
-      id="philosophy-heading"
-    >
-      Good technology starts with a better question.
-    </SectionHeading>
-    <div class="philosophy-body">
-      <p class="philosophy-lead">
-        What if it could be simpler?
+      <h1 id="hero-heading" data-tagline-status={site.tagline.status}>
+        Curious Minds.
         <br />
-        More useful? Within reach?
+        <span class="accent">Creating Tomorrow.</span>
+      </h1>
+      <p class="hero-description">
+        We're CurioX. We explore new technology and build useful software.
       </p>
-      <div class="muted">
-        <p>
-          Curiosity is where we begin. CurioX is a technology and software
-          company exploring new ideas and finding practical ways to make them
-          useful.
-        </p>
-        <p>
-          Our purpose is to keep learning, build with intent and make technology
-          more approachable. The question always comes before the solution.
-        </p>
-      </div>
+      <ButtonLink href="#products">View products</ButtonLink>
     </div>
   </section>
-
   <section
-    class="principles-section rule"
-    id="principles"
-    aria-labelledby="principles-heading"
+    class="container home-products"
+    id="products"
+    aria-labelledby="products-heading"
+    data-reveal-group
   >
-    <div class="container section">
-      <SectionHeading
-        number="02"
-        label="The way we think"
-        id="principles-heading"
-      >
-        An open mind.
-        <br />A purposeful approach.
-      </SectionHeading>
-      <div class="principles-grid">
-        {principles.map(({ name, copy }, index) => (
-          <article class="principle">
-            <div class="principle-top">
-              <span class="eyebrow">0{index + 1}</span>
-              <span aria-hidden="true">+</span>
-            </div>
-            <h3>{name}</h3>
-            <p>{copy}</p>
-          </article>
-        ))}
-      </div>
+    <div class="home-section-heading" data-reveal>
+      <h2 id="products-heading">Our products</h2>
+      <a tabindex="0" class="section-link" href="/products/">
+        All products <span aria-hidden="true">↗</span>
+      </a>
     </div>
-  </section>
-
-  <section class="affordable-section" aria-labelledby="affordable-heading">
-    <div class="container affordable-layout">
-      <div>
-        <Badge>Affordable, by intention</Badge>
-        <h2 id="affordable-heading">
-          Big possibilities.
-          <br />
-          Fewer barriers.
-        </h2>
-      </div>
-      <div class="affordable-copy">
-        <p>Useful technology should open doors.</p>
-        <p>
-          Affordability is part of our purpose. We want to build software that
-          more people can approach, understand and use — without making
-          complexity the cost of entry.
-        </p>
-        <a tabindex="0" href="/about/#purpose">
-          The purpose behind CurioX <span aria-hidden="true">↗</span>
-        </a>
-      </div>
-      <div class="affordable-lines" aria-hidden="true"></div>
-    </div>
-  </section>
-
-  <section
-    class="container section audience-section"
-    aria-labelledby="audience-heading"
-  >
-    <div class="audience-intro">
-      <p class="editorial-label eyebrow">
-        <span>03</span>
-        <span>People before technology</span>
-      </p>
-      <h2 id="audience-heading">
-        Different worlds.
-        <br />
-        <span class="muted">Shared curiosity.</span>
-      </h2>
-      <p class="muted">
-        Different needs guide the way we think about useful software.
-      </p>
-    </div>
-    <div class="audience-list">
-      {audiences.map(({ name, copy }, index) => (
-        <article class="audience-row">
-          <span class="eyebrow accent" aria-hidden="true">
-            0{index + 1}
-          </span>
-          <div>
-            <h3>{name}</h3>
-            <p class="muted">{copy}</p>
-          </div>
-        </article>
+    <div class="products-grid">
+      {products.map((product) => (
+        <ProductCard {product} headingLevel={3} />
       ))}
     </div>
   </section>
-
-  <section class="technology-section rule" aria-labelledby="technology-heading">
-    <div class="container section two-column">
-      <div class="stack">
-        <p class="editorial-label eyebrow">
-          <span>04</span>
-          <span>Always exploring</span>
-        </p>
-        <h2 id="technology-heading">
-          The tools change.
-          <br />
-          The curiosity stays.
-        </h2>
-        <p class="muted">
-          From emerging software tools to developments in AI, there's always
-          something new to understand. We're interested in what helps people —
-          and in learning what it takes to make it useful.
-        </p>
+  <section class="home-contact rule" aria-labelledby="contact-heading">
+    <div class="container home-contact-inner">
+      <div>
+        <h2 id="contact-heading">Get in touch</h2>
+        <p class="muted">Have a question or an idea? Email us.</p>
       </div>
-      <div class="exploration-diagram" aria-hidden="true">
-        <div class="diagram-cross">+</div>
-        <p class="eyebrow">A continuous practice</p>
-        <div class="diagram-track">
-          <span>Ask</span>
-          <i>↗</i>
-          <span>Explore</span>
-          <i>↗</i>
-          <span>Build</span>
-          <i>↗</i>
-          <span>Learn</span>
-        </div>
-        <p class="eyebrow diagram-caption">Keep the questions coming.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="closing-section" aria-labelledby="closing-heading">
-    <div class="container closing-layout">
-      <p class="eyebrow accent">There's more to explore</p>
-      <h2 id="closing-heading">
-        The next possibility
-        <br />
-        starts with a question.
-      </h2>
-      <ButtonLink href="/about/" variant="secondary">
-        Meet the thinking behind CurioX
-      </ButtonLink>
-      <span class="closing-arrow" aria-hidden="true">
-        ↗
-      </span>
+      <a
+        tabindex="0"
+        class="section-link"
+        href={'mailto:' + site.contact.email}
+      >
+        {site.contact.email}
+        <span aria-hidden="true">↗</span>
+      </a>
     </div>
   </section>
 </BaseLayout>

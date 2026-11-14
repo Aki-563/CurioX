@@ -5,8 +5,9 @@
 | Route               | Title                                      | Indexing                                                  |
 | ------------------- | ------------------------------------------ | --------------------------------------------------------- |
 | /                   | CurioX — Curious Minds. Creating Tomorrow. | Planned public                                            |
-| /about/             | About CurioX — Our purpose and approach    | Planned public                                            |
-| /contact/           | Contact CurioX — Start with a question     | Planned public, approved interim email                    |
+| /products/          | Products — CurioX                          | Planned public, minimal informational Smriti listing      |
+| /about/             | About CurioX                               | Planned public                                            |
+| /contact/           | Contact CurioX                             | Planned public, approved interim email                    |
 | /404.html           | Page not found — CurioX                    | noindex/nofollow; genuine404 on unknown paths             |
 | /review/components/ | Component review — CurioX                  | local review build only, noindex/nofollow; absent in dist |
 
@@ -14,7 +15,7 @@ Each public route: unique description/title/canonical, English lang, single H1, 
 
 Organization/WebSite JSON-LD uses verified name/url, approved slogan/email, English and publisher IDs only. No address, founding date, ratings, products or invented logo/social profiles. JSON syntax/property checks pass locally; no external validator submission claimed. Schema property meanings checked against https://schema.org/Organization.
 
-Build-time sitemap.xml is generated from three approved navigation routes; no synthetic lastmod dates or priority claims. robots.txt references it. Reference: https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap.
+Build-time sitemap.xml is generated from four approved navigation routes (Products added under D027 on 2026-11-14); no synthetic lastmod dates or priority claims. robots.txt references it. Reference: https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap.
 
 Prepared Cloudflare preview host rules exactly follow https://developers.cloudflare.com/pages/configuration/headers/:
 

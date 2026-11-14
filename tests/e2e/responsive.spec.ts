@@ -3,7 +3,47 @@ import { test, expect } from '@playwright/test';
 const widths = [
   320, 360, 375, 390, 430, 480, 640, 768, 820, 1024, 1280, 1440, 1920, 2560,
 ];
-for (const path of ['/', '/about/', '/contact/', '/404.html']) {
+
+test('footer reaches the viewport bottom on short pages and follows long content', async ({
+  page,
+}) => {
+  for (const viewport of [
+    { width: 320, height: 780 },
+    { width: 1440, height: 1200 },
+    { width: 1920, height: 1080 },
+  ]) {
+    await page.setViewportSize(viewport);
+    for (const path of [
+      '/',
+      '/products/',
+      '/about/',
+      '/contact/',
+      '/404.html',
+    ]) {
+      await page.goto(path);
+      await page.evaluate(() => document.fonts.ready);
+      const layout = await page.locator('footer').evaluate((footer) => ({
+        footerBottom: footer.getBoundingClientRect().bottom + scrollY,
+        documentBottom: document.documentElement.scrollHeight,
+        viewportHeight: innerHeight,
+        mainBottom: document.querySelector('main')!.getBoundingClientRect()
+          .bottom,
+        footerTop: footer.getBoundingClientRect().top,
+      }));
+      expect(layout.footerBottom, path).toBeGreaterThanOrEqual(
+        layout.viewportHeight - 1,
+      );
+      expect(
+        Math.abs(layout.footerBottom - layout.documentBottom),
+        path,
+      ).toBeLessThanOrEqual(1);
+      expect(layout.footerTop, path).toBeGreaterThanOrEqual(
+        layout.mainBottom - 1,
+      );
+    }
+  }
+});
+for (const path of ['/', '/products/', '/about/', '/contact/', '/404.html']) {
   test(`responsive sweep ${path}`, async ({ page }) => {
     await page.goto(path);
     await page.evaluate(() => document.fonts.ready);
@@ -45,7 +85,7 @@ for (const path of ['/', '/about/', '/contact/', '/404.html']) {
 test('text resize 200 percent and effective 200 percent desktop zoom reflow', async ({
   page,
 }) => {
-  for (const path of ['/', '/about/', '/contact/', '/404.html']) {
+  for (const path of ['/', '/products/', '/about/', '/contact/', '/404.html']) {
     await page.setViewportSize({ width: 640, height: 450 });
     await page.goto(path); // effective CSS viewport of 1280x900 at 200% browser zoom
     expect(

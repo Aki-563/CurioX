@@ -6,14 +6,7 @@ import { navigation } from '../../config/navigation';
 <footer class="site-footer">
   <div class="container">
     <div class="footer-main">
-      <div class="stack">
-        <TextWordmark />
-        <p class="muted">
-          Curiosity-driven technology.
-          <br />
-          Useful software. Wider possibilities.
-        </p>
-      </div>
+      <TextWordmark />
       <nav aria-label="Footer">
         {navigation.map(({ href, label }) => (
           <a tabindex="0" href={href}>
@@ -21,13 +14,9 @@ import { navigation } from '../../config/navigation';
           </a>
         ))}
       </nav>
-      <p class="footer-signoff">
-        Stay curious<span aria-hidden="true">↗</span>
-      </p>
     </div>
     <div class="footer-bottom">
       <p>© {new Date().getFullYear()} CurioX</p>
-      <p>Explore. Build. Make accessible.</p>
       <a tabindex="0" href="#main">
         Back to top ↑
       </a>

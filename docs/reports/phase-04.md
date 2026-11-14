@@ -18,3 +18,6 @@ Baseline Lighthouse (single run/profile, not final repeated benchmark), Chromium
 No brand approvals inferred. Final tagline/logo/contact/legal remain open. Resume: Phase 05 truthful About/Contact preview/404 and content review.
 
 Later approved delta: D018 during Phase06 replaces the working headline with final “Curious Minds. Creating Tomorrow.” See Phase05 update and final captures/performance for current evidence. Baseline above retains original measured build; it is not mislabelled as final headline measurements.
+# 2026-11-14 — Home simplification (D028)
+
+User explicitly replaced the original long narrative requirement. Home now has three sections: approved tagline + simple introduction/Products CTA, shared Smriti card grid, compact email contact. Removed philosophy/principles/affordability/audience/technology/closing sections, graphic and repeated hero slogans. `home.css` now contains only current layout styles. ProductCard uses H3 beneath Products H2. Check/build/static audit passed; 16 updated full-page captures across four routes and four widths are local at `test-artifacts/simple-site/`. Mobile/desktop Home and mobile About inspected; no clipping/overflow. See phase-11.md D028 amendment for final regression results. Original evidence below/above remains historical.

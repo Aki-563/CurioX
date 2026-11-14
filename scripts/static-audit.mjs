@@ -7,6 +7,7 @@ const expected = [
   'index.html',
   'about/index.html',
   'contact/index.html',
+  'products/index.html',
   '404.html',
 ];
 const files = fs
@@ -49,11 +50,12 @@ const rows = expected.map((path) => {
     bytes: Buffer.byteLength(html),
   };
 });
-assert.equal(new Set(rows.map((row) => row.title)).size, 4);
-assert.equal(new Set(rows.map((row) => row.canonical)).size, 4);
+assert.equal(new Set(rows.map((row) => row.title)).size, 5);
+assert.equal(new Set(rows.map((row) => row.canonical)).size, 5);
 const sitemap = fs.readFileSync(`${directory}/sitemap.xml`, 'utf8');
-assert.equal((sitemap.match(/<loc>/g) ?? []).length, 3);
-assert(!/review|404|smriti|privacy|products/i.test(sitemap));
+assert.equal((sitemap.match(/<loc>/g) ?? []).length, 4);
+assert(sitemap.includes('<loc>https://curiox.in/products/</loc>'));
+assert(!/review|404|smriti|privacy/i.test(sitemap));
 assert(
   fs
     .readFileSync(`${directory}/robots.txt`, 'utf8')
@@ -108,5 +110,5 @@ fs.writeFileSync(
 );
 console.log(JSON.stringify(rows, null, 2));
 console.log(
-  'PASS: four HTML routes, unique metadata, three sitemap URLs, schema syntax, fonts/licenses, social dimensions and preview header patterns. Cloudflare edge behavior NOT_TESTED.',
+  'PASS: five HTML routes, unique metadata, four sitemap URLs, schema syntax, fonts/licenses, social dimensions and preview header patterns. Cloudflare edge behavior NOT_TESTED.',
 );

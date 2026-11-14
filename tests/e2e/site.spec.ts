@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-for (const path of ['/', '/about/', '/contact/', '/404.html']) {
+for (const path of ['/', '/products/', '/about/', '/contact/', '/404.html']) {
   test(`static content ${path}`, async ({ page }) => {
     const errors: string[] = [];
     page.on('pageerror', (error) => errors.push(error.message));
@@ -16,6 +16,33 @@ for (const path of ['/', '/about/', '/contact/', '/404.html']) {
     await expect(page.locator('main')).toBeVisible();
     expect(errors).toEqual([]);
     expect(failures).toEqual([]);
+    if (path === '/') {
+      await expect(
+        page.getByRole('heading', { level: 3, name: 'Smriti', exact: true }),
+      ).toBeVisible();
+      await expect(
+        page.getByRole('link', { name: 'View products', exact: true }),
+      ).toHaveAttribute('href', '#products');
+      await expect(page.locator('main')).not.toContainText(
+        'A question today. A possibility tomorrow.',
+      );
+    }
+    if (path === '/products/') {
+      await expect(
+        page.getByRole('heading', { level: 2, name: 'Smriti', exact: true }),
+      ).toBeVisible();
+      await expect(page.locator('.product-card')).toHaveCount(1);
+      await expect(
+        page.locator(
+          '.product-card a, .product-card button, .product-card img',
+        ),
+      ).toHaveCount(0);
+      await expect(
+        page
+          .getByRole('navigation', { name: 'Main', exact: true })
+          .locator('summary'),
+      ).toHaveAttribute('aria-current', 'page');
+    }
   });
 }
 
@@ -41,7 +68,7 @@ test('public links and hash destinations resolve, with genuine unknown-route 404
   page,
   request,
 }) => {
-  for (const path of ['/', '/about/', '/contact/']) {
+  for (const path of ['/', '/products/', '/about/', '/contact/']) {
     await page.goto(path);
     const hrefs = await page
       .locator('a[href]')

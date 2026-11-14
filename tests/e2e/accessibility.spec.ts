@@ -1,8 +1,8 @@
-import { test, expect } from '@playwright/test';
+﻿import { test, expect } from '@playwright/test';
 import fs from 'node:fs';
 import AxeBuilder from '@axe-core/playwright';
 
-for (const path of ['/', '/about/', '/contact/', '/404.html']) {
+for (const path of ['/', '/products/', '/about/', '/contact/', '/404.html']) {
   test(`WCAG automated checks ${path}`, async ({ page }) => {
     for (const width of [320, 1440]) {
       await page.setViewportSize({ width, height: 960 });
@@ -30,7 +30,7 @@ test('mobile expanded navigation passes automated accessibility checks', async (
 test('landmarks, heading outline and decorative graphics expose clear semantics', async ({
   page,
 }, info) => {
-  for (const path of ['/', '/about/', '/contact/', '/404.html']) {
+  for (const path of ['/', '/products/', '/about/', '/contact/', '/404.html']) {
     await page.goto(path);
     await expect(page.getByRole('main')).toHaveCount(1);
     await expect(page.getByRole('banner')).toHaveCount(1);
@@ -63,10 +63,10 @@ test('landmarks, heading outline and decorative graphics expose clear semantics'
 test('complete desktop tab order reaches every visible link with focus indicator', async ({
   page,
 }) => {
-  for (const path of ['/', '/about/', '/contact/']) {
+  for (const path of ['/', '/products/', '/about/', '/contact/']) {
     await page.setViewportSize({ width: 1440, height: 960 });
     await page.goto(path);
-    const targets = await page.locator('a,button').all();
+    const targets = await page.locator('a,button,summary').all();
     for (const target of targets) {
       if (
         !(await target.isVisible()) &&
@@ -90,7 +90,7 @@ test('forced colors and reduced motion keep controls visible', async ({
   await page.setViewportSize({ width: 320, height: 780 });
   await page.goto('/');
   await expect(page.locator('html')).toHaveAttribute('data-scroll', 'native');
-  const cta = page.getByRole('link', { name: 'Explore CurioX', exact: true });
+  const cta = page.getByRole('link', { name: 'View products', exact: true });
   await cta.focus();
   expect(await cta.evaluate((el) => getComputedStyle(el).borderStyle)).toBe(
     'solid',
@@ -110,7 +110,7 @@ test('actual primary button state colours meet contrast thresholds', async ({
 }, info) => {
   await page.goto('/');
   const button = page.getByRole('link', {
-    name: 'Explore CurioX',
+    name: 'View products',
     exact: true,
   });
   const readings: { state: string; fg: string; bg: string; ratio: number }[] =

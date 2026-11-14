@@ -56,7 +56,10 @@ for (const profile of ['mobile', 'desktop', 'reduced']) {
   if (profile === 'mobile') {
     await page.getByRole('button', { name: 'Menu', exact: true }).click();
     await page.keyboard.press('Escape');
-  } else await page.getByRole('link', { name: 'How we think' }).click();
+  } else
+    await page
+      .getByRole('link', { name: 'View products', exact: true })
+      .click();
   await page.waitForTimeout(100);
   rows.push({
     profile,

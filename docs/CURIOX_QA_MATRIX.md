@@ -1,5 +1,9 @@
 # CurioX QA matrix
 
+2026-11-14 D030 refresh:114/114 E2E pass in2.6m across Chromium/Firefox/WebKit. Expanded full-screen mobile menu and all routes pass axe with zero tested-rule violations. New coverage: Products details with no-JS path, menu viewport height/inert background/Tab containment/Escape, short-height internal scroll with locked page, resize cleanup, glass header8px, once-only450ms reveals/75ms stagger and live reduced-motion cancellation. Fourteen-width route sweeps and footer regression retained. Screenshots in `test-artifacts/glass-navigation/`: Home320/390/820/1440, menu/dropdown320/390/820 and desktop dropdown; representative mobile/tablet/desktop captures inspected. Physical devices and actual screen-reader narration remain untested.
+
+2026-11-14 D028 refresh: Home/About/Contact simplified, header/footer reduced, shared Home product card added with H3 hierarchy. New screenshots: `test-artifacts/simple-site/{home,about,contact,products}-{320,390,768,1440}.png`. Independent screenshot script recorded zero horizontal overflow at all 16 route/width combinations. Final build/99-test regression results and tooling recovery details are in phase-11.md D028 amendment; earlier measurements below remain historical. No new physical-device/screen-reader certification or performance score claimed.
+
 Date: 2026-11-13 (Asia/Calcutta). Local Windows; Playwright1.65.0 Chromium158, Firefox159, WebKit27.2. These engines do not constitute physical Safari/iOS/Android testing.
 
 | Coverage                                                                               | Method                                                       | Actual result                                                                                 | Evidence                                               |

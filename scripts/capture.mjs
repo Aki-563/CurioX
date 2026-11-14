@@ -7,6 +7,7 @@ const routes = gallery
   ? [['gallery', '/review/components/']]
   : [
       ['home', '/'],
+      ['products', '/products/'],
       ['about', '/about/'],
       ['contact', '/contact/'],
       ['404', '/404.html'],

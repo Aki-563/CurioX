@@ -15,3 +15,12 @@ Local gallery /review/components/ is generated only in dev or review build. Defa
 Contrast computed by scripts/contrast.mjs: button 5.816, hover 5.417, body 18.852, muted body 10.238, muted surface 9.193, subtle 5.615, link 7.046, selection 14.063, focus against button 4.003. Decorative accent with white normal text is avoided. Dark text on accent 4.585. Values are ratios to 1, raw data test-artifacts/contrast.json.
 
 Motion: state transitions 160ms; reduced-motion override; no content hidden awaiting animation. Native motion baseline precedes conditional Lenis evaluation in Phase 07.
+
+
+## 2026-11-14 continuity recovery
+
+This file was absent at the start of D035. Restored the committed historical baseline without overwriting an existing file. Later D025-D034 approvals and verification remain in CURIOX_MASTER_PLAN.md and CURIOX_PROGRESS.md; this restoration does not claim recovery of the missing uncommitted report wording.
+
+## 2026-11-14 - D035 current navigation
+
+Current header dropdown is viewport-wide on desktop, container-aligned inside, with supplied-logo slots24px and no decorative link arrows.200ms ease-in-out opacity/8px translation on desktop open/hover close; reduced-motion instantaneous. Mobile full-screen tap accordion and dark toggle remain.

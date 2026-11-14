@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { seo } from '../config/seo';
+import { products } from '../config/products';
+import ProductCard from '../components/sections/ProductCard.astro';
+import '../styles/products.css';
+---
+
+<BaseLayout {...seo.products}>
+  <section class="container products-page" aria-labelledby="products-heading">
+    <div class="products-intro">
+      <h1 id="products-heading">
+        Products<span class="accent">.</span>
+      </h1>
+      <p class="muted">Software by CurioX.</p>
+    </div>
+    <div class="products-grid" data-reveal-group>
+      {products.map((product) => (
+        <ProductCard {product} />
+      ))}
+    </div>
+  </section>
+</BaseLayout>

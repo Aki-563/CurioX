@@ -1,22 +1,25 @@
 export const seo = {
+  products: {
+    title: 'Products — CurioX',
+    description:
+      'Products by CurioX. Explore our product lineup, starting with Smriti.',
+  },
   home: {
     title: 'CurioX — Curious Minds. Creating Tomorrow.',
     description:
-      'CurioX explores emerging technology and builds useful software with a focus on approachability and affordability.',
+      'We explore new technology and build useful software. Discover products by CurioX, starting with Smriti.',
   },
   about: {
-    title: 'About CurioX — Our purpose and approach',
+    title: 'About CurioX',
     description:
-      'Get to know the curiosity-driven approach behind CurioX: explore, build and make useful technology more accessible.',
+      'CurioX explores new technology and builds useful software. Our goal is to make software easy to use and affordable.',
   },
   contact: {
-    title: 'Contact CurioX — Start with a question',
-    description:
-      'Get in touch with CurioX by email. Start a conversation about useful software, technology or an idea you would like to explore.',
+    title: 'Contact CurioX',
+    description: 'Have a question or an idea? Contact CurioX by email.',
   },
   notFound: {
     title: 'Page not found — CurioX',
-    description:
-      'This page could not be found. Return to CurioX or explore our approach.',
+    description: 'This page could not be found. Return to CurioX.',
   },
 };
