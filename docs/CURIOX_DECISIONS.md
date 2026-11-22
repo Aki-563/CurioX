@@ -147,3 +147,11 @@ User asked for plain browser-tab titles: no "—"/"|" separators and no "CURIOX"
 ## D043 APPROVED - 2026-11-22
 
 User explicitly authorises committing the current changes and pushing to `main` on https://github.com/Aki-563/CurioX.git. Scope: D037–D042 work (Smriti page and privacy policy, site review fixes, Smriti theming, logo kit and Brand page, CURIOX casing, plain titles, link preview, cleanup and single-copy logo assets). Source publication only; no website deployment, DNS or account change.
+
+## D044 APPROVED - 2026-11-22
+
+User explicitly authorised pushing the Cloudflare build fix. Commit 1010d7d pushed to origin main (a52d293..1010d7d), no force push. Source publication only; Cloudflare Pages deployment is configured and triggered by the user, not by this agent.
+
+## D045 APPROVED - 2026-11-22
+
+User explicitly authorised committing and pushing the Smriti mobile-menu fix (open menu panel now opaque on Smriti pages, matching CURIOX pages; commit f60dd14) and this decisions-log update to origin main. Source publication only; no deployment, DNS or account change.
