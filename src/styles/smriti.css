@@ -30,6 +30,12 @@ body.smriti-page {
 body.smriti-page .site-header {
   background: rgb(0 0 0 / 86%);
 }
+/* Keep the open mobile menu panel opaque, as on CURIOX pages. */
+@media (max-width: 1023px) {
+  body.smriti-page .site-header[data-open='true'] {
+    background: var(--color-bg-alt);
+  }
+}
 
 /*
  * Smriti product page (D037). Scoped theme taken from the Smriti app's
