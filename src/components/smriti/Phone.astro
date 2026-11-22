@@ -1,0 +1,32 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  eager?: boolean;
+  priority?: boolean;
+  sizes?: string;
+  class?: string;
+}
+const {
+  src,
+  alt,
+  eager = false,
+  priority = false,
+  sizes = '(min-width: 1024px) 300px, (min-width: 640px) 34vw, 60vw',
+  class: className,
+} = Astro.props;
+---
+
+<figure class:list={['sm-phone', className]}>
+  <Image
+    {src}
+    {alt}
+    widths={[320, 640]}
+    {sizes}
+    loading={eager ? 'eager' : 'lazy'}
+    fetchpriority={priority ? 'high' : undefined}
+    decoding="async"
+  />
+</figure>

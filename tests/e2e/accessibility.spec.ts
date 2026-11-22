@@ -1,13 +1,41 @@
 ﻿import { test, expect } from '@playwright/test';
 import fs from 'node:fs';
 import AxeBuilder from '@axe-core/playwright';
+import type { Page } from '@playwright/test';
 
-for (const path of ['/', '/products/', '/about/', '/contact/', '/404.html']) {
+// Measure settled colours, not mid-animation frames. Waits two frames so
+// just-triggered transitions exist, then awaits time-based animations only
+// (scroll-driven ones never finish).
+async function settle(page: Page) {
+  await page.evaluate(async () => {
+    await new Promise((resolve) =>
+      requestAnimationFrame(() => requestAnimationFrame(resolve)),
+    );
+    await Promise.all(
+      document
+        .getAnimations()
+        .filter((animation) => animation.timeline instanceof DocumentTimeline)
+        .map((animation) => animation.finished.catch(() => undefined)),
+    );
+  });
+}
+
+for (const path of [
+  '/',
+  '/products/',
+  '/products/smriti/',
+  '/products/smriti/privacy/',
+  '/brand/',
+  '/about/',
+  '/contact/',
+  '/404.html',
+]) {
   test(`WCAG automated checks ${path}`, async ({ page }) => {
     for (const width of [320, 1440]) {
       await page.setViewportSize({ width, height: 960 });
       await page.goto(path);
       await page.evaluate(() => document.fonts.ready);
+      await settle(page);
       const result = await new AxeBuilder({ page })
         .withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'])
         .analyze();
@@ -21,6 +49,7 @@ test('mobile expanded navigation passes automated accessibility checks', async (
   await page.setViewportSize({ width: 320, height: 780 });
   await page.goto('/');
   await page.getByRole('button', { name: 'Menu', exact: true }).click();
+  await settle(page);
   const result = await new AxeBuilder({ page })
     .withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'])
     .analyze();
@@ -30,14 +59,29 @@ test('mobile expanded navigation passes automated accessibility checks', async (
 test('landmarks, heading outline and decorative graphics expose clear semantics', async ({
   page,
 }, info) => {
-  for (const path of ['/', '/products/', '/about/', '/contact/', '/404.html']) {
+  for (const path of [
+    '/',
+    '/products/',
+    '/products/smriti/',
+    '/products/smriti/privacy/',
+    '/brand/',
+    '/about/',
+    '/contact/',
+    '/404.html',
+  ]) {
     await page.goto(path);
     await expect(page.getByRole('main')).toHaveCount(1);
     await expect(page.getByRole('banner')).toHaveCount(1);
     await expect(page.getByRole('contentinfo')).toHaveCount(1);
     for (const svg of await page.locator('svg').all())
       expect(
-        await svg.evaluate((el) => !!el.closest('[aria-hidden="true"]')),
+        // Decorative (hidden) or a named image such as the Brand page logo.
+        await svg.evaluate(
+          (el) =>
+            !!el.closest('[aria-hidden="true"]') ||
+            (el.getAttribute('role') === 'img' &&
+              !!el.getAttribute('aria-label')),
+        ),
       ).toBe(true);
     const levels = await page
       .locator('h1,h2,h3,h4,h5,h6')

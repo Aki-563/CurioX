@@ -1,14 +1,14 @@
 ---
-import TextWordmark from '../ui/TextWordmark.astro';
-import { navigation } from '../../config/navigation';
+import Logo from '../ui/Logo.astro';
+import { navigation, footerLinks } from '../../config/navigation';
 ---
 
 <footer class="site-footer">
   <div class="container">
     <div class="footer-main">
-      <TextWordmark />
+      <Logo />
       <nav aria-label="Footer">
-        {navigation.map(({ href, label }) => (
+        {[...navigation, ...footerLinks].map(({ href, label }) => (
           <a tabindex="0" href={href}>
             {label}
           </a>
@@ -16,7 +16,7 @@ import { navigation } from '../../config/navigation';
       </nav>
     </div>
     <div class="footer-bottom">
-      <p>© {new Date().getFullYear()} CurioX</p>
+      <p>© {new Date().getFullYear()} CURIOX</p>
       <a tabindex="0" href="#main">
         Back to top ↑
       </a>

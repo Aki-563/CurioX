@@ -4,3 +4,6 @@ export const navigation = [
   { href: '/about/', label: 'About' },
   { href: '/contact/', label: 'Contact' },
 ];
+
+// Footer-only links (the header menu stays Products, About, Contact per D030).
+export const footerLinks = [{ href: '/brand/', label: 'Brand' }];

@@ -30,10 +30,10 @@ test('component gallery contrast, semantics, font loading and narrow layouts', a
       await button.evaluate((el) => getComputedStyle(el).borderRadius),
     ).toBe('0px');
   }
-  await page.getByRole('link', { name: 'Explore CurioX' }).focus();
+  await page.getByRole('link', { name: 'Explore CURIOX' }).focus();
   expect(
     await page
-      .getByRole('link', { name: 'Explore CurioX' })
+      .getByRole('link', { name: 'Explore CURIOX' })
       .evaluate((el) => getComputedStyle(el).outlineStyle),
   ).not.toBe('none');
 });

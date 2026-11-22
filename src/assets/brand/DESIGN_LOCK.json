@@ -1,0 +1,45 @@
+{
+  "status": "user-approved-design",
+  "approved_date": "2026-11-22",
+  "selection": "D2 / Original curves / Aligned dot",
+  "scope": "Symbol geometry, including dot position and size",
+  "accent": "#9351F3",
+  "master": "output/approved-mark/curiox-mark-master.svg",
+  "approval_evidence": {
+    "selected_image": "output/revised-mark/curiox-dot-alignment-dark.png",
+    "comment": "no i think this is fine lock this"
+  },
+  "paths": [
+    "M10 83 C27 70 42 54 46 41 C49 27 54 14 61 8 C67 3 73 9 73 15 L66 20 C65 14 64 14 61 18 C55 26 54 37 51 48 C45 65 30 81 15 91 Z",
+    "M24 42 C27 33 35 27 43 27 C54 27 54 35 55 39 C59 44 75 34 95 19 L100 24 C78 41 59 54 50 48 C44 44 47 36 42 35 C37 34 31 40 31 46 Z"
+  ],
+  "dot": {
+    "center": [
+      1.0091934617193576,
+      95.2590171993892
+    ],
+    "radius": 3.8,
+    "svg_path": "M4.8091934617193575 95.2590171993892 C4.8091934617193575 97.3576992486292 3.1078755109593574 99.0590171993892 1.0091934617193576 99.0590171993892 C-1.0894885875206421 99.0590171993892 -2.790806538280642 97.3576992486292 -2.790806538280642 95.2590171993892 C-2.790806538280642 93.16033515014921 -1.0894885875206421 91.45901719938921 1.0091934617193576 91.45901719938921 C3.1078755109593574 91.45901719938921 4.8091934617193575 93.16033515014921 4.8091934617193575 95.2590171993892 Z"
+  },
+  "sha256": {
+    "curiox-mark-master.svg": "0e3a8140fb6a16bfa5146c9c07233876c72fb2eb93efb2776ede32d3018daec4",
+    "curiox-mark-purple-512.png": "4b1e92c74667f68ecce0a26719a28da2e0ac396653625f455f4015de6f2db98d",
+    "curiox-mark-dark-preview.png": "7017d453df59814d42016361ca330fee6583a65460cf37c71b68e5177ec50afc",
+    "curiox-mark-black.svg": "ba8eb6895303188cb837d326a83861ecb764cbe4e1f3203c832a7f47ac953ec3",
+    "curiox-mark-white.svg": "168988d3daaba23518a99a0f19d5496e47be6b78a98348a4d84f94310946ca68"
+  },
+  "production_rule": "Use this exact master for future logo files. Preserve the original asymmetric D2 curves and aligned dot. Do not use the mirrored revision or the previous offset dot.",
+  "trademark_clearance": "unverified; design approval only",
+  "wordmark": {
+    "text": "CURIOX",
+    "case": "uppercase",
+    "font": "Space Grotesk Bold",
+    "weight": 700,
+    "tracking_em": -0.025,
+    "all_letters_same_type_size": true,
+    "approved_date": "2026-11-22",
+    "approval_comment": "all upper is fine and good looking",
+    "horizontal_source": "output/wordmark-study/svg/uppercase/curiox-uppercase-horizontal-black.svg",
+    "vertical_source": "output/wordmark-study/svg/uppercase/curiox-uppercase-vertical-black.svg"
+  }
+}

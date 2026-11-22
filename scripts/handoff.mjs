@@ -19,7 +19,7 @@ fs.writeFileSync(
 );
 
 const shots = [
-  '# CurioX final screenshot index',
+  '# CURIOX final screenshot index',
   '',
   '2026-11-13. Actual rendered captures with reduced motion. All75 images are ignored local QA artifacts. User visual approval pending.',
   '',
@@ -69,7 +69,7 @@ const original = 'CURIOX_CODEX_MASTER_PLAN.md';
 fs.writeFileSync(
   'docs/CURIOX_FILE_INVENTORY.md',
   [
-    '# CurioX file inventory',
+    '# CURIOX file inventory',
     '',
     `2026-11-13. Root initially contained only ${original}, preserved byte-for-byte. All other ${files.length - 1} listed files were created locally; ${source.length} application source files. No unrelated source overwritten. Generated dependencies/builds/test artifacts excluded.`,
     '',

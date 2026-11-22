@@ -16,6 +16,9 @@ test('footer reaches the viewport bottom on short pages and follows long content
     for (const path of [
       '/',
       '/products/',
+      '/products/smriti/',
+      '/products/smriti/privacy/',
+      '/brand/',
       '/about/',
       '/contact/',
       '/404.html',
@@ -43,7 +46,16 @@ test('footer reaches the viewport bottom on short pages and follows long content
     }
   }
 });
-for (const path of ['/', '/products/', '/about/', '/contact/', '/404.html']) {
+for (const path of [
+  '/',
+  '/products/',
+  '/products/smriti/',
+  '/products/smriti/privacy/',
+  '/brand/',
+  '/about/',
+  '/contact/',
+  '/404.html',
+]) {
   test(`responsive sweep ${path}`, async ({ page }) => {
     await page.goto(path);
     await page.evaluate(() => document.fonts.ready);
@@ -85,7 +97,16 @@ for (const path of ['/', '/products/', '/about/', '/contact/', '/404.html']) {
 test('text resize 200 percent and effective 200 percent desktop zoom reflow', async ({
   page,
 }) => {
-  for (const path of ['/', '/products/', '/about/', '/contact/', '/404.html']) {
+  for (const path of [
+    '/',
+    '/products/',
+    '/products/smriti/',
+    '/products/smriti/privacy/',
+    '/brand/',
+    '/about/',
+    '/contact/',
+    '/404.html',
+  ]) {
     await page.setViewportSize({ width: 640, height: 450 });
     await page.goto(path); // effective CSS viewport of 1280x900 at 200% browser zoom
     expect(

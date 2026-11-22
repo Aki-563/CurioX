@@ -17,14 +17,17 @@ const Heading = headingLevel === 3 ? 'h3' : 'h2';
     <img
       class="product-cover"
       src={product.cover}
+      srcset={product.coverSrcset}
+      sizes="(min-width: 1360px) 640px, (min-width: 768px) 46vw, 92vw"
       alt=""
       width="1200"
       height="750"
+      decoding="async"
     />
   )}
   <div class="product-card-body">
     <div class="product-card-label">
-      <p class="eyebrow">CurioX product</p>
+      <p class="eyebrow">CURIOX product</p>
       {product.status && <span class="product-status">{product.status}</span>}
     </div>
     <div class="product-title">
@@ -37,7 +40,7 @@ const Heading = headingLevel === 3 ? 'h3' : 'h2';
     {product.href && (
       <a tabindex="0" class="product-link" href={product.href}>
         Explore {product.name}
-        <span aria-hidden="true">↗</span>
+        <span aria-hidden="true">→</span>
       </a>
     )}
   </div>

@@ -1,0 +1,597 @@
+/*
+ * Smriti pages recolour the shared CURIOX header and footer with Smriti's
+ * dark palette and accent blue (D040). Custom properties that reference
+ * other tokens (--focus, --foreground, --background) are restated because
+ * they resolve where they are declared.
+ */
+body.smriti-page {
+  --color-bg: #000;
+  --color-bg-alt: #0d0d0d;
+  --color-surface: #1a1a1a;
+  --color-surface-raised: #262626;
+  --color-border: #2e2e2e;
+  --color-primary: #0787fe;
+  --color-primary-hover: #4aa8ff;
+  --color-primary-button: #0068d1;
+  --color-primary-button-hover: #005bb8;
+  --color-secondary: #5fb3ff;
+  --color-secondary-soft: #b9dcff;
+  --color-text: #fff;
+  --color-text-muted: #b4b6bd;
+  --color-text-subtle: #8b8e96;
+  --color-link: #4aa8ff;
+  --foreground: var(--color-text);
+  --background: var(--color-bg);
+  --focus: var(--color-secondary-soft);
+  /* Approved white-on-black logo treatment; the CURIOX mark is not recoloured blue. */
+  --logo-symbol: currentColor;
+  background: var(--color-bg);
+}
+body.smriti-page .site-header {
+  background: rgb(0 0 0 / 86%);
+}
+
+/*
+ * Smriti product page (D037). Scoped theme taken from the Smriti app's
+ * ThemeContext: true-black dark mode, white/#F7F7F8 light mode, accent blue
+ * #0787FE on dark and #0068D1 on light. Rounded corners follow the app and
+ * apply only inside .smriti; CURIOX header/footer keep their own styling.
+ */
+.smriti {
+  --sm-accent-dark: #0787fe;
+  --sm-accent-light: #0068d1;
+  --sm-black: #000;
+  --sm-surface-dark: #1a1a1a;
+  --sm-white: #fff;
+  --sm-surface-light: #f7f7f8;
+  --sm-ink: #0f172a;
+  --sm-ink-muted: #475569;
+  --sm-radius: 20px;
+  --sm-gap: clamp(16px, 3vw, 32px);
+  font-family: var(--font-body);
+}
+.smriti h1,
+.smriti h2,
+.smriti h3 {
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+.smriti h2 {
+  font-size: clamp(2rem, 1.3rem + 3.6vw, 4rem);
+  line-height: 1.06;
+}
+.smriti h3 {
+  font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+}
+.smriti code {
+  font-family: inherit;
+  font-weight: 600;
+}
+
+/* Section surfaces */
+.sm-dark,
+.sm-black {
+  --sm-text: #fff;
+  --sm-muted: rgba(255, 255, 255, 0.68);
+  --sm-accent: var(--sm-accent-dark);
+  --sm-card: var(--sm-surface-dark);
+  --sm-line: rgba(255, 255, 255, 0.1);
+  color: var(--sm-text);
+}
+.sm-dark {
+  background: var(--sm-black);
+}
+.sm-black {
+  background: var(--sm-black);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+.sm-light,
+.sm-white {
+  --sm-text: var(--sm-ink);
+  --sm-muted: var(--sm-ink-muted);
+  --sm-accent: var(--sm-accent-light);
+  --sm-card: var(--sm-white);
+  --sm-line: rgba(0, 0, 0, 0.08);
+  color: var(--sm-text);
+}
+.sm-light {
+  background: var(--sm-surface-light);
+}
+.sm-white {
+  background: var(--sm-white);
+}
+.smriti ::selection {
+  background: var(--sm-accent-dark);
+  color: #fff;
+}
+.smriti :focus-visible {
+  outline: 2px solid var(--sm-accent);
+  outline-offset: 4px;
+}
+
+.sm-section {
+  padding-block: clamp(72px, 10vw, 144px);
+  overflow: hidden;
+}
+.sm-head {
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+  max-width: 760px;
+  margin: 0 auto clamp(40px, 6vw, 72px);
+  text-align: center;
+}
+.sm-kicker {
+  color: var(--sm-accent);
+  font-size: clamp(0.9375rem, 0.88rem + 0.3vw, 1.125rem);
+  font-weight: 600;
+}
+.sm-sub {
+  max-width: 34em;
+  color: var(--sm-muted);
+  font-size: clamp(1.0625rem, 0.98rem + 0.45vw, 1.3125rem);
+  line-height: 1.5;
+}
+.sm-note {
+  color: var(--sm-muted);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+/* Phone frame. Proportions follow the 640 x 1432 screen crops. */
+.sm-phone {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 640 / 1432;
+  /* Thin bezel. A fixed width, because percentage padding resolves
+     against the parent's width and made wide tiles look thick. */
+  border: clamp(3px, 0.45vw, 6px) solid #0b0b0c;
+  border-radius: 14% / 6.3%;
+  background: #0b0b0c;
+  box-shadow:
+    0 0 0 1.5px #3a3a3c,
+    0 0 0 3px #c9c3ba,
+    0 30px 60px -20px rgba(0, 0, 0, 0.45);
+}
+.sm-light .sm-phone,
+.sm-white .sm-phone {
+  box-shadow:
+    0 0 0 1.5px #2c2c2e,
+    0 0 0 3px #d8d2c9,
+    0 30px 60px -24px rgba(15, 23, 42, 0.35);
+}
+.sm-phone img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 12.5% / 5.6%;
+  object-fit: cover;
+  background: #fff;
+}
+
+/* Hero */
+.sm-hero {
+  position: relative;
+  padding-top: clamp(56px, 8vw, 112px);
+  overflow: hidden;
+  isolation: isolate;
+}
+.sm-hero::before {
+  content: '';
+  position: absolute;
+  inset: auto -20% -10% -20%;
+  height: 70%;
+  background: radial-gradient(
+    60% 60% at 50% 70%,
+    rgba(7, 135, 254, 0.32),
+    transparent 70%
+  );
+  z-index: -1;
+  pointer-events: none;
+}
+.sm-hero-copy {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  text-align: center;
+}
+.sm-app-icon {
+  width: clamp(64px, 6vw, 88px);
+  height: auto;
+  border-radius: 22.5%;
+  box-shadow: 0 8px 24px rgba(7, 135, 254, 0.35);
+}
+.sm-hero h1 {
+  margin-top: 8px;
+  font-size: clamp(3.25rem, 1.8rem + 7.5vw, 7.5rem);
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+.sm-hero-title {
+  font-size: clamp(1.625rem, 1.1rem + 2.6vw, 3.25rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  background: linear-gradient(
+    90deg,
+    #5fb3ff,
+    var(--sm-accent-dark) 55%,
+    #7b8cff
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.sm-hero-lede {
+  max-width: 30em;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: clamp(1.0625rem, 0.98rem + 0.45vw, 1.3125rem);
+  line-height: 1.5;
+}
+.sm-cta {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  margin-top: 12px;
+}
+.sm-cta-note {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.875rem;
+}
+.sm-play {
+  display: inline-block;
+  border-radius: 12px;
+  line-height: 0;
+}
+.sm-play img {
+  /* The official badge artwork includes its own clear space. */
+  width: clamp(180px, 16vw + 120px, 230px);
+  height: auto;
+}
+
+.sm-fan {
+  position: relative;
+  width: min(92vw, 820px);
+  aspect-ratio: 820 / 640;
+  margin: clamp(32px, 5vw, 64px) auto 0;
+}
+.sm-fan-item {
+  position: absolute;
+  top: 0;
+  width: 33%;
+}
+.sm-fan-center {
+  left: 33.5%;
+  z-index: 2;
+}
+.sm-fan-left {
+  left: 6%;
+  top: 9%;
+}
+.sm-fan-right {
+  right: 6%;
+  top: 9%;
+}
+.sm-fan-left .sm-phone {
+  transform: rotate(-6deg);
+}
+.sm-fan-right .sm-phone {
+  transform: rotate(6deg);
+}
+@media (max-width: 639px) {
+  .sm-fan {
+    width: min(100vw, 560px);
+    aspect-ratio: 560 / 620;
+  }
+  .sm-fan-item {
+    width: 46%;
+  }
+  .sm-fan-center {
+    left: 27%;
+  }
+  .sm-fan-left {
+    left: -4%;
+    top: 12%;
+  }
+  .sm-fan-right {
+    right: -4%;
+    top: 12%;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .sm-fan-left .sm-phone,
+    .sm-fan-right .sm-phone {
+      animation: sm-spread linear both;
+      animation-timeline: view();
+      animation-range: exit -20% exit 60%;
+    }
+    .sm-fan-right .sm-phone {
+      animation-name: sm-spread-right;
+    }
+  }
+}
+@keyframes sm-spread {
+  to {
+    transform: translateX(-10%) rotate(-10deg);
+  }
+}
+@keyframes sm-spread-right {
+  to {
+    transform: translateX(10%) rotate(10deg);
+  }
+}
+
+/* Two-up phone tiles */
+.sm-pair {
+  display: grid;
+  gap: clamp(48px, 6vw, 72px) var(--sm-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.sm-tile {
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: 12px;
+  text-align: center;
+}
+.sm-tile .sm-phone {
+  width: min(260px, 72%);
+  margin-bottom: 16px;
+}
+.sm-tile p {
+  max-width: 24em;
+  color: var(--sm-muted);
+  line-height: 1.5;
+}
+.sm-step {
+  display: inline-grid;
+  place-items: center;
+  width: 1.6em;
+  height: 1.6em;
+  margin-right: 0.3em;
+  border-radius: 50%;
+  background: var(--sm-accent);
+  color: #fff;
+  font-size: 0.8em;
+  vertical-align: 0.12em;
+}
+@media (min-width: 640px) {
+  .sm-pair {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .sm-tile .sm-phone {
+    width: min(280px, 78%);
+  }
+}
+
+/* Library rail: scrolls sideways on small screens, three-up on wide ones */
+.sm-rail {
+  overflow-x: auto;
+  /* A horizontal scroller also clips vertically; leave room for the
+     phone frame ring and shadow so the top edge isn't cut. */
+  padding-block: 12px 32px;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+.sm-rail::-webkit-scrollbar {
+  display: none;
+}
+.sm-rail:focus-visible {
+  outline-offset: -4px;
+}
+.sm-rail-track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: min(68vw, 280px);
+  gap: var(--sm-gap);
+  width: max-content;
+  margin: 0;
+  padding: 0 var(--gutter);
+  list-style: none;
+}
+.sm-rail-track .sm-tile {
+  scroll-snap-align: center;
+}
+.sm-rail-track .sm-phone {
+  width: 100%;
+}
+@media (min-width: 900px) {
+  .sm-rail {
+    overflow: visible;
+  }
+  .sm-rail-track {
+    grid-auto-columns: minmax(0, 1fr);
+    width: min(calc(100% - var(--gutter) * 2), 1040px);
+    margin-inline: auto;
+    padding: 0;
+  }
+  .sm-rail-track .sm-phone {
+    width: min(280px, 84%);
+  }
+}
+
+/* Privacy grid */
+.sm-privacy {
+  display: grid;
+  gap: 16px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+@media (min-width: 560px) {
+  .sm-privacy {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 900px) {
+  .sm-privacy {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+.sm-privacy li {
+  display: grid;
+  gap: 8px;
+  padding: clamp(24px, 3vw, 36px);
+  border: 1px solid var(--sm-line);
+  border-radius: var(--sm-radius);
+  background: var(--sm-card);
+}
+.sm-privacy h3 {
+  color: var(--sm-accent);
+  font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.125rem);
+  letter-spacing: -0.03em;
+}
+.sm-privacy p {
+  color: var(--sm-muted);
+  line-height: 1.5;
+}
+
+/* Backup split */
+.sm-split {
+  display: grid;
+  gap: clamp(48px, 6vw, 96px);
+  align-items: center;
+}
+.sm-split-copy {
+  display: grid;
+  gap: 16px;
+  justify-items: center;
+  text-align: center;
+}
+.sm-split-media {
+  display: grid;
+  justify-items: center;
+}
+.sm-split-media .sm-phone {
+  width: min(280px, 72%);
+}
+@media (min-width: 900px) {
+  .sm-split {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    max-width: 1100px;
+  }
+  .sm-split-copy {
+    justify-items: start;
+    text-align: left;
+  }
+  .sm-split-copy h2 {
+    max-width: 12ch;
+  }
+}
+
+/* Month covers */
+.sm-covers {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(10px, 2vw, 20px);
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+.sm-covers li {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  aspect-ratio: 3 / 2;
+  background: #e2e8f0;
+}
+.sm-covers img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.sm-covers span {
+  position: absolute;
+  inset: auto 0 0;
+  padding: 24px 12px 10px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
+  color: #fff;
+  font-size: clamp(0.8125rem, 0.76rem + 0.25vw, 0.9375rem);
+  font-weight: 600;
+}
+@media (min-width: 640px) {
+  .sm-covers {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1024px) {
+  .sm-covers {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.sm-center .sm-head {
+  margin-bottom: 0;
+}
+
+/* Final call to action */
+.sm-final {
+  padding-block: clamp(80px, 12vw, 160px);
+  background:
+    radial-gradient(
+      60% 80% at 50% 100%,
+      rgba(7, 135, 254, 0.22),
+      transparent 70%
+    ),
+    var(--sm-black);
+}
+.sm-final-inner {
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+  text-align: center;
+}
+.sm-final h2 {
+  max-width: 14ch;
+}
+.sm-legal {
+  max-width: 40em;
+  margin-top: 16px;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+/* Smriti privacy policy (D038) */
+.sm-policy-inner {
+  display: grid;
+  gap: 16px;
+  max-width: 760px;
+  line-height: 1.65;
+}
+.sm-policy h1 {
+  font-size: clamp(2.25rem, 1.6rem + 3vw, 3.75rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+.sm-policy h2 {
+  margin-top: 24px;
+  font-size: clamp(1.375rem, 1.2rem + 0.8vw, 1.75rem);
+  letter-spacing: -0.02em;
+}
+.sm-policy ul {
+  display: grid;
+  gap: 10px;
+  padding-left: 1.25em;
+}
+.sm-policy a {
+  color: var(--sm-accent);
+}
+.sm-policy-link {
+  margin: 32px auto 0;
+  text-align: center;
+}
+.sm-policy-link a,
+.sm-legal a {
+  color: var(--sm-accent);
+}

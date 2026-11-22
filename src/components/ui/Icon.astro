@@ -1,12 +1,13 @@
 ---
 interface Props {
-  kind?: 'arrow' | 'diagonal' | 'plus';
+  kind?: 'arrow' | 'diagonal' | 'plus' | 'download';
 }
 const { kind = 'arrow' } = Astro.props;
 const paths = {
   arrow: 'M4 12h16m-7-7 7 7-7 7',
   diagonal: 'M5 19 19 5M5 5h14v14',
   plus: 'M12 4v16M4 12h16',
+  download: 'M12 4v12m-6-6 6 6 6-6M5 20h14',
 };
 ---
 

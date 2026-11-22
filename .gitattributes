@@ -1,0 +1,12 @@
+# Binary assets must never have line endings converted.
+*.pdf binary
+*.png binary
+*.jpg binary
+*.webp binary
+*.ico binary
+*.zip binary
+*.woff2 binary
+
+# Approved logo masters are stored byte-for-byte (checksums in manifest.json).
+src/assets/brand/** binary
+public/favicon.svg binary

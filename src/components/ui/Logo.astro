@@ -1,0 +1,21 @@
+---
+// Approved CURIOX horizontal lockup (symbol + wordmark), generated from the
+// master SVGs by scripts/brand-assets.mjs. The symbol uses --logo-symbol
+// (accent #9351F3 by default) and the wordmark uses currentColor, giving the
+// approved "purple symbol + white wordmark" lockup on dark backgrounds.
+import lockup from '../../assets/brand/web/curiox-lockup-inline.svg?raw';
+interface Props {
+  label?: string;
+}
+const { label = 'CURIOX — Home' } = Astro.props;
+const svg = lockup
+  .replace(/ width="[^"]+" height="[^"]+"/, '')
+  .replace(
+    '<svg ',
+    '<svg class="logo-art" aria-hidden="true" focusable="false" ',
+  );
+---
+
+<a tabindex="0" class="wordmark" href="/" aria-label={label}>
+  <Fragment set:html={svg} />
+</a>

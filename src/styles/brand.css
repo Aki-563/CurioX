@@ -1,0 +1,172 @@
+/* Brand / logo kit page. Square tiles and buttons follow the CURIOX system. */
+.brand-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 32px;
+}
+.brand-hero {
+  display: grid;
+  place-items: center;
+  margin: 48px 0 0;
+  padding: clamp(48px, 10vw, 128px) clamp(24px, 6vw, 96px);
+  border: 1px solid var(--color-border);
+  background: #000;
+  color: #fff;
+}
+.brand-hero-logo {
+  width: min(100%, 560px);
+  height: auto;
+  overflow: visible;
+}
+.brand-group {
+  padding-top: 40px;
+  margin-top: 56px;
+  border-top: 1px solid var(--color-border);
+}
+.brand-group-head {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.brand-group-head h2 {
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+}
+.brand-group-head p {
+  max-width: 52ch;
+}
+.brand-grid,
+.brand-colors,
+.brand-rules {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.brand-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr));
+}
+.brand-grid--symbol {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 160px), 1fr));
+}
+.brand-tile {
+  display: grid;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-alt);
+}
+.brand-tile img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.brand-tile-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px 12px;
+  padding: 8px 12px;
+  border-top: 1px solid var(--color-border);
+  font-size: var(--text-small);
+  color: var(--color-text-muted);
+}
+.brand-tile-links {
+  display: flex;
+  gap: 4px;
+}
+.brand-tile-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  min-width: 44px;
+  justify-content: center;
+  color: var(--color-text);
+  font-weight: 600;
+}
+.brand-colors {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr));
+}
+.brand-colors li {
+  display: grid;
+  gap: 4px;
+  font-size: var(--text-small);
+}
+.brand-colors strong {
+  margin-top: 8px;
+  font-size: 1rem;
+}
+.brand-swatch {
+  display: block;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--color-border);
+}
+.brand-swatch--violet {
+  background: #9351f3;
+}
+.brand-swatch--black {
+  background: #000;
+}
+.brand-swatch--white {
+  background: #fff;
+}
+.brand-rules {
+  display: grid;
+  gap: 12px;
+  max-width: 60ch;
+}
+.brand-rules li {
+  position: relative;
+  padding-left: 20px;
+  color: var(--color-text-muted);
+}
+.brand-rules li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 6px;
+  height: 6px;
+  background: var(--color-primary-hover);
+}
+.brand-more {
+  margin-top: 24px;
+}
+/* simple-page caps children at 1040px; the kit needs the full container. */
+.simple-page.brand-page > * {
+  max-width: none;
+}
+.brand-page > .page-lead,
+.brand-page > h1 {
+  max-width: 1040px;
+}
+/* Transparent logos sit on a checkerboard so the missing background is clear. */
+.brand-checker {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 492 / 311;
+  padding: 16px;
+  background-size: 16px 16px;
+  background-position:
+    0 0,
+    8px 8px;
+}
+.brand-tile .brand-checker img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.brand-checker--light {
+  background-color: #fff;
+  background-image:
+    linear-gradient(45deg, #ececf0 25%, transparent 25% 75%, #ececf0 75%),
+    linear-gradient(45deg, #ececf0 25%, transparent 25% 75%, #ececf0 75%);
+}
+.brand-checker--dark {
+  background-color: #000;
+  background-image:
+    linear-gradient(45deg, #16141c 25%, transparent 25% 75%, #16141c 75%),
+    linear-gradient(45deg, #16141c 25%, transparent 25% 75%, #16141c 75%);
+}

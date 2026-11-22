@@ -3,7 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import ButtonLink from '../../components/ui/ButtonLink.astro';
 import Badge from '../../components/ui/Badge.astro';
 import SectionHeading from '../../components/ui/SectionHeading.astro';
-import TextWordmark from '../../components/ui/TextWordmark.astro';
+import Logo from '../../components/ui/Logo.astro';
 export function getStaticPaths() {
   return import.meta.env.DEV || process.env.CURIOX_REVIEW === '1'
     ? [{ params: { component: 'components' } }]
@@ -12,13 +12,13 @@ export function getStaticPaths() {
 ---
 
 <BaseLayout
-  title="Component review — CurioX"
+  title="Component review"
   description="Internal design system review, excluded from release."
   noindex
 >
   <div class="container section stack">
     <p class="eyebrow accent">Local design review / provisional</p>
-    <TextWordmark />
+    <Logo />
     <h1>Curious by design.</h1>
     <p class="muted">
       Space Grotesk display. Inter body. Electric violet. A precise system for
@@ -29,7 +29,7 @@ export function getStaticPaths() {
     </SectionHeading>
     <div class="stack">
       <Badge>Affordable</Badge>
-      <ButtonLink href="/about/">Explore CurioX</ButtonLink>
+      <ButtonLink href="/about/">Explore CURIOX</ButtonLink>
       <ButtonLink href="/" variant="secondary">
         Back to Home
       </ButtonLink>

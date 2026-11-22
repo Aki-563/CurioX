@@ -64,10 +64,10 @@ test('glass header keeps its blur; product navigation works without JavaScript',
     .getByRole('navigation', { name: 'Main', exact: true })
     .getByRole('link', { name: 'Smriti', exact: true })
     .click();
-  await expect(fallback).toHaveURL(/\/products\/#smriti$/);
+  await expect(fallback).toHaveURL(/\/products\/smriti\/$/);
   expect(
     await fallback
-      .locator('#smriti')
+      .locator('#smriti-heading')
       .evaluate((el) => getComputedStyle(el).opacity),
   ).toBe('1');
   await context.close();

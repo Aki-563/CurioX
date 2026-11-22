@@ -230,8 +230,8 @@ test('Products expands within the mobile menu; focus and scrolling stay containe
   await toggle.click();
   await products.click();
   await nav.getByRole('link', { name: 'Smriti', exact: true }).click();
-  await expect(page).toHaveURL(/\/products\/#smriti$/);
-  await expect(page.locator('#smriti')).toBeInViewport();
+  await expect(page).toHaveURL(/\/products\/smriti\/$/);
+  await expect(page.locator('#smriti-heading')).toBeInViewport();
   await expect(page.locator('html')).not.toHaveAttribute('data-menu-open', '');
 });
 

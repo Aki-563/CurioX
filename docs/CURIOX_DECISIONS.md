@@ -100,3 +100,50 @@ User requests ease-in-out on Products hover and removal of the arrow shown besid
 ## D036 APPROVED - 2026-11-14
 
 User explicitly authorises committing the current site changes and pushing to main on https://github.com/Aki-563/CurioX.git. Scope includes the simplification, Products listing, header/menu/motion refinements, tests and supporting documentation from D025-D035. This authorises source publication only; website deployment, DNS and external account changes remain excluded.
+
+## D037 APPROVED - 2026-11-22
+
+User requests a Smriti marketing page reached from the Products section, inspired by Apple product pages, coloured with Smriti's own accent and following the Smriti app UI, with a Google Play "Get it on" badge linking to `https://play.google.com/store/apps/details?id=com.connectingdots.smriti`. User approved using Play Store screenshots and anything from the Smriti repo (`D:\Smriti`), and requires full responsiveness down to 320px. This supersedes D027's deferral of individual Smriti pages and brings forward the `/products/smriti` part of P13.04 as local source work only.
+
+- Route `/products/smriti/`; Products card, header dropdown and sitemap link to it.
+- Scoped `.smriti` theme from Smriti `ThemeContext`: true black `#000`/`#1A1A1A`, light `#FFF`/`#F7F7F8`, ink `#0F172A`, accent `#0787FE` (dark) and `#0068D1` (light). Rounded corners apply only inside this page, matching the app; CurioX header/footer and square-button rule elsewhere are unchanged.
+- Facts are limited to the Smriti Play listing description and `D:\Smriti\docs\SMRITI_COMPLETE_GUIDE.md`. No ratings, download counts or release claims.
+- Assets: 8 Play Store screenshots cropped to the phone screen (`src/assets/smriti/*.png`), the repo app icon and 12 month covers; official Google Play badge stored unmodified at `public/badges/google-play-badge.png` with Google's trademark notice on the page.
+- Motion reuses the existing reveal script; one optional CSS scroll-driven fan spread on the hero, disabled for reduced motion and unsupported browsers.
+- No deployment, DNS, account or remote change is authorised by this decision.
+
+## D038 APPROVED - 2026-11-22
+
+User supplied the Smriti privacy policy (`https://sites.google.com/view/smriti-privacy-policy/home`, last updated 7 November 2026) and asked to use it, and asked for a thinner phone bezel with no other changes. Policy is reproduced verbatim at `/products/smriti/privacy/`, linked from the Smriti Privacy section and footnote, kept out of the sitemap (existing rule). Phone frame now uses a fixed `clamp(3px, 0.45vw, 6px)` border instead of percentage padding, which resolved against the parent width and looked thick.
+
+D038 update (2026-11-22): user will remove the Google Sites copy, so the "Also published at" source link was removed; `/products/smriti/privacy/` is now the only published copy.
+
+## D039 APPROVED - 2026-11-22
+
+User asked for rounded product icons everywhere and a rigorous whole-site review (quality, wording, SEO, performance, responsiveness, richness, UI/layout/spacing) with bug fixes. Done with the design-critique framework plus a Playwright sweep (7 pages x 6 widths), Lighthouse, axe and the existing suite.
+
+Fixes: app-icon rounding (22.5%) on Products card and header menu; About/Contact content now aligns with the header logo (`.simple-page` caps children, not the container); card eyebrow 11px → 12px; internal links use → instead of the external-link ↗; Smriti month covers request correct sizes on desktop (were blurry); Google Play badge resized 646 → 460px (unchanged artwork); only the centre hero phone gets high fetch priority; Smriti product card gains a cover captured from the Smriti hero (`public/products/smriti-cover*.webp`, 640w/1200w srcset).
+
+## D040 APPROVED - 2026-11-22
+
+On Smriti pages (`/products/smriti/` and its privacy page) the shared CurioX header, mobile menu, Products dropdown and footer use Smriti's accent blue and neutral black palette instead of CurioX violet, via token overrides on `body.smriti-page` in `smriti.css` and a per-page `theme-color` (#000). The wordmark "X" follows the accent and is blue there. Other pages are unchanged. Also fixed: My Library rail clipped the top of the phones on mobile (horizontal scroller clips vertically) — added vertical padding. Accessibility tests now share a `settle()` helper that waits for transitions/animations before axe scans (mobile-menu check was racing its fade-in on WebKit).
+
+
+## D041 APPROVED - 2026-11-22
+
+User supplied the final CURIOX logo collection (`Downloads\Logos\final-logos`, 19 versions on backgrounds plus 13 transparent versions, each SVG/PDF, transparent also PNG) and asked to use it across the site the way NVIDIA uses its logo, with a brand logo kit page. User also asked that the name be written **CURIOX** (all capitals) everywhere, that the favicon be `transparent/svg/symbol/curiox-symbol-purple-transparent.svg`, and that the CURIOX lettering be smaller in the header, footer and wherever the lockup appears.
+
+- Assets: masters copied unchanged to `src/assets/brand/` (`svg/`, `transparent/`, manifests, README, OFL); all 77 files verified against the supplied SHA-256 manifests. Download kit in `public/brand/` (PDFs, overviews, SVG/transparent copies, `curiox-logo-kit.zip`).
+- `scripts/brand-assets.mjs` derives web files from the masters without editing geometry: tightly cropped inline lockup/symbol (symbol uses `--logo-symbol`, lettering uses currentColor), favicon.svg (verbatim copy of the chosen file), favicon.ico (16/32/48, transparent), opaque white-on-#9351F3 apple-touch/192/512 icons for the web manifest, and the ZIP.
+- Web lockup lettering is scaled to 78% about its left edge and the symbol centre (user request); the downloadable kit files keep the approved full-size lockup.
+- Header and footer use the lockup (`Logo.astro` replaces `TextWordmark.astro`); Smriti pages use the approved white-on-black treatment instead of recolouring the mark blue (refines D040).
+- New `/brand/` page (footer link "Brand", in sitemap): downloads, all 32 versions with per-file links, colours, wordmark note and usage rules taken from the kit README. Organization schema gains `logo`; social preview regenerated with the lockup; CSP gains `manifest-src self`.
+- Trademark clearance is unverified (kit README); the site makes no trademark claim. No deployment, DNS or account change.
+
+## D042 APPROVED - 2026-11-22
+
+User asked for plain browser-tab titles: no "—"/"|" separators and no "CURIOX" in titles. Titles are now: Curious Minds. Creating Tomorrow. (home), Products, Smriti, Smriti Privacy Policy, About, Contact, Brand, Page not found. "Starting with Smriti" is removed everywhere (it was only in the home and Products meta descriptions). The link-preview image (`public/social-preview.png`, og/twitter image) is now `src/assets/brand/svg/symbol/curiox-symbol-purple-on-white.svg` rendered at 200px, centred on a white 1200×630 card; image alt "CURIOX logo". `og:site_name` stays CURIOX. The static audit enforces plain titles and the removed phrase. Social apps cache link previews, so old previews may persist until the deployed site changes and the cache refreshes. No deployment authorised.
+
+## D043 APPROVED - 2026-11-22
+
+User explicitly authorises committing the current changes and pushing to `main` on https://github.com/Aki-563/CurioX.git. Scope: D037–D042 work (Smriti page and privacy policy, site review fixes, Smriti theming, logo kit and Brand page, CURIOX casing, plain titles, link preview, cleanup and single-copy logo assets). Source publication only; no website deployment, DNS or account change.

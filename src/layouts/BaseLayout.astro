@@ -7,8 +7,18 @@ interface Props {
   title: string;
   description: string;
   noindex?: boolean;
+  extraSchema?: Record<string, unknown>[];
+  bodyClass?: string;
+  themeColor?: string;
 }
-const { title, description, noindex = false } = Astro.props;
+const {
+  title,
+  description,
+  noindex = false,
+  extraSchema,
+  bodyClass,
+  themeColor = '#050409',
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -16,8 +26,8 @@ const { title, description, noindex = false } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <Metadata {title} {description} {noindex} />
-    <meta name="theme-color" content="#050409" />
+    <Metadata {title} {description} {noindex} {extraSchema} />
+    <meta name="theme-color" content={themeColor} />
     <link
       rel="preload"
       href="/fonts/space-grotesk-latin.woff2"
@@ -32,9 +42,12 @@ const { title, description, noindex = false } = Astro.props;
       type="font/woff2"
       crossorigin
     />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
   </head>
-  <body>
+  <body class={bodyClass}>
     <a tabindex="0" class="skip-link" href="#main">
       Skip to content
     </a>

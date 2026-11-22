@@ -1,0 +1,212 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { seo } from '../../../config/seo';
+import '../../../styles/smriti.css';
+
+// Smriti privacy policy text (D038). This page is now the canonical copy.
+---
+
+<BaseLayout {...seo.smritiPrivacy} bodyClass="smriti-page" themeColor="#000000">
+  <div class="smriti">
+    <article class="sm-section sm-white sm-policy">
+      <div class="container sm-policy-inner">
+        <p class="sm-kicker">
+          <a href="/products/smriti/">Smriti</a>
+        </p>
+        <h1>Privacy Policy</h1>
+        <p class="sm-note">Last updated: 7 November 2026</p>
+        <p>
+          Smriti is a personal activity journal for Android (package
+          com.connectingdots.smriti). This policy explains what the app stores,
+          what leaves your phone, and the choices you have.
+        </p>
+
+        <h2>The short version</h2>
+        <ul>
+          <li>
+            There is no account, no sign-in, no analytics, no advertising and no
+            Smriti server.
+          </li>
+          <li>
+            Your journal is stored on your phone, and the app works without an
+            internet connection. If you choose Google Drive backup, an encrypted
+            copy goes to your own Drive.
+          </li>
+          <li>
+            A few optional features use the internet, only at the moment you use
+            them. They are listed below.
+          </li>
+        </ul>
+
+        <h2>What Smriti stores on your phone</h2>
+        <ul>
+          <li>
+            Your profile: name, optional photo, date of birth, gender —
+            Personalises the app.
+          </li>
+          <li>
+            Journal entries: date, time, activity, notes, place, people, tags —
+            The core purpose of the app.
+          </li>
+          <li>
+            People you add yourself (name, optional nickname and photo) — So you
+            can record who you spent time with. Smriti does not read your
+            phone's contacts.
+          </li>
+          <li>
+            Saved places (name and optional map coordinates) — So you can record
+            where an activity happened.
+          </li>
+          <li>
+            Card cover images you choose — To decorate your monthly cards.
+          </li>
+          <li>
+            App settings and a history of reminders shown — To run the app and
+            avoid repeating reminders.
+          </li>
+        </ul>
+        <p>
+          This data is kept in the app's private storage. Your journal database
+          and the photos you add (profile, people and card covers) are encrypted
+          on the phone (AES-256) with a key held in the phone's secure Keystore;
+          with App Lock on, that key only opens with your fingerprint. A copy of
+          the key, locked with your backup passphrase, lets you get back in if
+          the phone's Keystore is ever reset. Settings → Data &amp; Security →
+          Delete Data, or uninstalling the app, removes it.
+        </p>
+        <p>
+          If Android's device backup is turned on, it can copy only Smriti's
+          latest encrypted auto-backup file. Your readable journal, photos and
+          settings are excluded.
+        </p>
+
+        <h2>Permissions</h2>
+        <ul>
+          <li>
+            Location (only while the app is open) — When you save a place or log
+            an activity, to fill in coordinates and suggest your nearest saved
+            place. Never collected in the background.
+          </li>
+          <li>
+            Microphone — Only while you use voice typing for notes. Smriti does
+            not record or keep audio.
+          </li>
+          <li>
+            Camera — Only when you choose "Take photo" for your profile or a
+            person.
+          </li>
+          <li>
+            Notifications — Reminders and "on this day" memories, created on
+            your phone.
+          </li>
+          <li>
+            Fingerprint / face / screen lock — Only if you turn on App Lock.
+            Your phone checks it; Smriti never sees biometric data.
+          </li>
+        </ul>
+        <p>
+          Photos are chosen with Android's system photo picker, so Smriti does
+          not get access to your whole photo library.
+        </p>
+
+        <h2>What can leave your phone</h2>
+        <p>
+          Smriti never sends your journal anywhere on its own. These optional
+          features need the internet and use other services:
+        </p>
+        <ul>
+          <li>
+            Voice typing uses your phone's speech-recognition service (on most
+            Android phones this is Google). Depending on your phone it may run
+            on the device or on the provider's servers, under that provider's
+            privacy policy.
+          </li>
+          <li>
+            Place names: when Smriti reads your location, it may ask your
+            phone's geocoding service (usually Google) for the name of that
+            spot.
+          </li>
+          <li>
+            Maps (choosing a spot, or the small map in an entry) load map images
+            from OpenStreetMap and the map code from unpkg.com. Like any
+            website, these servers see your IP address and the map area shown,
+            never your journal.
+          </li>
+          <li>
+            Card cover from a web link: Smriti downloads that image once and
+            keeps a copy on your phone. The website you link to sees your IP
+            address.
+          </li>
+          <li>
+            AI Insights export creates a plain-text file that you choose to
+            share with another app. Nothing is sent unless you share it
+            yourself.
+          </li>
+          <li>
+            Backups are encrypted on your phone with your passphrase
+            (AES-256-GCM) and saved only where you choose. Without the
+            passphrase the file cannot be opened, and a lost passphrase cannot
+            be recovered.
+          </li>
+          <li>
+            Google Drive backup is off unless you connect your own Google
+            account. Encrypted backup files then go straight from your phone to
+            a folder in your Drive; there is no Smriti server in between. Smriti
+            uses only the limited drive.file permission, so it can see only the
+            files it creates there. Google can see the files' names, sizes and
+            dates, and your Google account email is stored on your phone, but
+            your journal can't be read without your passphrase. Disconnect at
+            any time in Settings → Data &amp; Security → Auto-backup. Backups
+            already in your Drive stay there until you delete them.
+          </li>
+          <li>
+            Auto-backup key: so backups can run by themselves, a key made from
+            your passphrase is kept in your phone's secure Keystore. Your
+            passphrase itself is never saved.
+          </li>
+        </ul>
+        <p>
+          Smriti's use of information received from Google APIs adheres to the
+          Google API Services User Data Policy, including the Limited Use
+          requirements. Data from your Google Drive is used only to create, read
+          and delete Smriti's own backup files, is not shared with anyone, and
+          is not used for advertising.
+        </p>
+
+        <h2>Children</h2>
+        <p>
+          Smriti is not directed at children under 13 and does not knowingly
+          collect information from them.
+        </p>
+
+        <h2>Deleting your data</h2>
+        <p>
+          Use Settings → Data &amp; Security → Delete Data, or uninstall the
+          app. There are no servers or accounts, so nothing else is held by us.
+          Delete any .smriti backup files you saved yourself, including the
+          "Smriti Backups - Do Not Delete" folder in your Google Drive if you
+          used it.
+        </p>
+
+        <h2>Open source</h2>
+        <p>
+          Smriti is open source under the MIT License and is provided "as is",
+          without warranty.
+        </p>
+
+        <h2>Changes</h2>
+        <p>
+          If this policy changes, the new version will be published at this
+          address with a new "Last updated" date.
+        </p>
+
+        <h2>Contact</h2>
+        <p>
+          Email:
+          <a href="mailto:akileshprimary@gmail.com">akileshprimary@gmail.com</a>
+          — or use Share Feedback in Settings → About Application.
+        </p>
+      </div>
+    </article>
+  </div>
+</BaseLayout>

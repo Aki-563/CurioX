@@ -37,7 +37,7 @@
   color: var(--color-text-muted);
 }
 .product-card-label .eyebrow {
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
 }
 .product-status {
   font-size: 0.8125rem;
@@ -56,6 +56,7 @@
 .product-title img {
   flex: 0 0 48px;
   object-fit: contain;
+  border-radius: 22.5%; /* app-icon shape, matches Smriti page (D039) */
 }
 .product-description {
   margin-top: 20px;

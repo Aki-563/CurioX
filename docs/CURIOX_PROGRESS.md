@@ -209,3 +209,27 @@ Final local gate, 2026-11-13:
 User authorised initial commit and push to Aki-563/CurioX on main (D024). Repository initialised at the existing project root; origin configured; remote preflight found no existing refs. Source/docs publication is independent of blocked legal content and does not start Phase12. See reports/git-publication.md; actual commit/upstream verification is in Git state and local test-artifacts/git-publication.json after the operation. Previous phase statements about no Git operations are historical to their original verification gate.
 
 D035 DONE:200ms ease-in-out desktop dropdown open/hover-close; decorative dropdown arrows removed. Reduced-motion/mobile/native keyboard preserved. Check52 zero diagnostics, production/review build/static audit/format/diff pass. Navigation24/24 pass33.4s across3engines; header axe0 and no overflow at4widths. Evidence and continuity recovery notes in phase11 D035.
+
+## D037 Smriti product page - 2026-11-22
+
+DONE 2026-11-22 (D037/D038). `/products/smriti/` and `/products/smriti/privacy/` built. Evidence: astro check 0 errors/0 warnings; static audit PASS (7 routes, 5 sitemap URLs); Playwright 144/144 pass on chromium/firefox/webkit; no overflow 320–1920px. Axe test now waits for time-based reveal animations before scanning (it was racing them). Next action: user review; commit/push needs new authorisation.
+
+## D039 site review - 2026-11-22
+
+DONE. Rounded icons; layout/size/image fixes per D039. Evidence: astro check 0 errors; static audit PASS; Playwright 144/144; sweep of 7 pages x 6 widths (320–2560) shows no overflow, tiny text, small targets, broken links or console errors; Lighthouse mobile 99–100 in all categories on all pages (CLS 0, TBT 0). Next action: user review; commit/push needs new authorisation.
+
+## D041 logo kit and CURIOX casing - 2026-11-22
+
+DONE. Evidence: 77 supplied files match manifest SHA-256; favicon.svg byte-identical to the chosen transparent symbol; `astro check` 0 errors/0 warnings; build + build:review OK; `audit:static` PASS (8 routes, 6 sitemap URLs, brand kit assets); Playwright 153/153 pass on chromium/firefox/webkit; no horizontal overflow at 320/1440 on /, /brand/, /products/smriti/. Next action: user review of header/footer logo size and /brand/; commit/push needs new authorisation.
+
+## D042 plain titles and logo link preview - 2026-11-22
+
+DONE. Evidence: `astro check` 0/0; build + build:review OK; `audit:static` PASS with new title/phrase guards; Playwright 153/153 on chromium/firefox/webkit; social-preview.png 1200×630 inspected. Next action: user review; commit/push needs new authorisation.
+
+## Cleanup - 2026-11-22
+
+User asked to remove unwanted test and other files. Removed ignored local output (`test-artifacts/` ~61 MB incl. earlier phase screenshots/Lighthouse runs, `test-results/`, `dist/`, `dist-review/`), unused `CuriosityGraphic.astro` (only the old social image used it), unused generated `curiox-symbol-inline.svg`, unlinked overview PNGs from `public/brand/` (masters kept in `src/assets/brand/`), and two empty `src/` folders. `brand-assets.mjs` no longer regenerates the removed files; kit ZIP now 910 KB. Evidence files cited in older phase reports no longer exist locally; rerun tests/scripts to regenerate. Verification after cleanup: check 0/0, both builds, static audit PASS, Playwright 153/153.
+
+## Single copy of logo files - 2026-11-22
+
+User asked why `public/brand` exists when everything is in assets. Logo files are now stored once in `src/assets/brand/` (PDFs moved there; README, manifest and complete PDF synced to the user's updated 32-version kit). `public/brand/` is git-ignored and rebuilt by `scripts/brand-assets.mjs`, which `dev`, `build` and `build:review` now run first. Pending changes 237 → 174. Verification: check 0/0, builds, static audit PASS, Playwright 153/153.

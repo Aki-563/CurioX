@@ -1,4 +1,4 @@
-# CurioX
+# CURIOX
 
 Local-only static Astro corporate site. Read AGENTS.md and docs/CURIOX_MASTER_PLAN.md first. No deployment is authorised.
 

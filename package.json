@@ -8,7 +8,8 @@
     "node": ">=24.16.0 <25"
   },
   "scripts": {
-    "dev": "astro dev --host 127.0.0.1",
+    "dev": "node scripts/brand-assets.mjs && astro dev --host 127.0.0.1",
+    "brand": "node scripts/brand-assets.mjs",
     "check": "astro check",
     "build": "node scripts/build.mjs",
     "build:review": "node scripts/build-review.mjs",

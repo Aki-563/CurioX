@@ -1,0 +1,242 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ButtonLink from '../components/ui/ButtonLink.astro';
+import { seo } from '../config/seo';
+import manifest from '../assets/brand/manifest.json';
+import transparentManifest from '../assets/brand/transparent/manifest.json';
+import lockup from '../assets/brand/web/curiox-lockup-inline.svg?raw';
+import '../styles/pages.css';
+import '../styles/brand.css';
+import fs from 'node:fs';
+
+// Every tile and download comes from the approved kit's manifest, so the page
+// always matches the files in public/brand.
+const groups = [
+  {
+    key: 'horizontal',
+    title: 'Horizontal',
+    note: 'Our main logo. Use it in most places.',
+  },
+  { key: 'vertical', title: 'Vertical', note: 'For square or tall spaces.' },
+  {
+    key: 'symbol',
+    title: 'Symbol',
+    note: 'For icons, avatars and small sizes.',
+  },
+].map((group) => ({
+  ...group,
+  assets: manifest.assets.filter((asset) => asset.arrangement === group.key),
+}));
+const hero = lockup
+  .replace(/ width="[^"]+" height="[^"]+"/, '')
+  .replace(
+    '<svg ',
+    '<svg class="brand-hero-logo" role="img" aria-label="CURIOX logo" ',
+  );
+const colors = [
+  { name: 'Violet', hex: '#9351F3', rgb: '147, 81, 243' },
+  { name: 'Black', hex: '#000000', rgb: '0, 0, 0' },
+  { name: 'White', hex: '#FFFFFF', rgb: '255, 255, 255' },
+];
+const kitBytes = fs.statSync('public/brand/curiox-logo-kit.zip').size;
+const kitSize =
+  kitBytes >= 1024 * 1024
+    ? `${(kitBytes / 1024 / 1024).toFixed(1)} MB`
+    : `${Math.round(kitBytes / 1024)} KB`;
+// Transparent set: shown on a surface that suits its lettering colour.
+const order = ['horizontal', 'vertical', 'symbol'];
+const transparent = transparentManifest.assets
+  .toSorted(
+    (a, b) => order.indexOf(a.arrangement) - order.indexOf(b.arrangement),
+  )
+  .map((asset) => ({
+    ...asset,
+    surface: /black/.test(asset.color) ? 'light' : 'dark',
+    name: `${asset.arrangement[0].toUpperCase()}${asset.arrangement.slice(1)}`,
+  }));
+---
+
+<BaseLayout {...seo.brand}>
+  <section
+    class="container simple-page brand-page"
+    aria-labelledby="brand-heading"
+  >
+    <p class="eyebrow">Brand</p>
+    <h1 id="brand-heading">
+      Logo kit<span class="accent">.</span>
+    </h1>
+    <p class="page-lead">
+      Download the official CURIOX logos as SVG, PDF and transparent PNG.
+    </p>
+    <div class="brand-actions">
+      <ButtonLink href="/brand/curiox-logo-kit.zip" download>
+        Download logo kit (ZIP, {kitSize})
+      </ButtonLink>
+      <ButtonLink
+        href="/brand/curiox-logo-overview.pdf"
+        variant="secondary"
+        download
+      >
+        Logo overview (PDF)
+      </ButtonLink>
+    </div>
+
+    <figure class="brand-hero" data-reveal>
+      <Fragment set:html={hero} />
+    </figure>
+
+    {groups.map((group) => (
+      <section class="brand-group" aria-labelledby={`brand-${group.key}`}>
+        <div class="brand-group-head">
+          <h2 id={`brand-${group.key}`}>{group.title}</h2>
+          <p class="muted">{group.note}</p>
+        </div>
+        <ul
+          class:list={['brand-grid', `brand-grid--${group.key}`]}
+          data-reveal-group
+        >
+          {group.assets.map((asset) => (
+            <li class="brand-tile" data-reveal>
+              <img
+                src={`/brand/${asset.svg}`}
+                alt={`CURIOX ${group.title.toLowerCase()} logo, ${asset.label.toLowerCase()}`}
+                width={asset.width}
+                height={asset.height}
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="brand-tile-meta">
+                <span>{asset.label}</span>
+                <span class="brand-tile-links">
+                  <a tabindex="0" href={`/brand/${asset.svg}`} download>
+                    SVG
+                    <span class="sr-only">
+                      , {group.title} {asset.label}
+                    </span>
+                  </a>
+                  <a tabindex="0" href={`/brand/${asset.pdf}`} download>
+                    PDF
+                    <span class="sr-only">
+                      , {group.title} {asset.label}
+                    </span>
+                  </a>
+                </span>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+
+    <section class="brand-group" aria-labelledby="brand-transparent">
+      <div class="brand-group-head">
+        <h2 id="brand-transparent">Transparent</h2>
+        <p class="muted">
+          No background, for placing on your own designs. Use white versions on
+          dark surfaces. PNG files are 2400 pixels wide or tall.
+        </p>
+      </div>
+      <ul class="brand-grid brand-grid--transparent" data-reveal-group>
+        {transparent.map((asset) => (
+          <li class="brand-tile" data-reveal>
+            <span
+              class:list={['brand-checker', `brand-checker--${asset.surface}`]}
+            >
+              <img
+                src={`/brand/transparent/${asset.svg}`}
+                alt={`CURIOX ${asset.arrangement} logo, ${asset.label.toLowerCase()}, transparent`}
+                width={asset.width}
+                height={asset.height}
+                loading="lazy"
+                decoding="async"
+              />
+            </span>
+            <div class="brand-tile-meta">
+              <span>
+                {asset.name} · {asset.label}
+              </span>
+              <span class="brand-tile-links">
+                {(['svg', 'png', 'pdf'] as const).map((kind) => (
+                  <a
+                    tabindex="0"
+                    href={`/brand/transparent/${asset[kind]}`}
+                    download
+                  >
+                    {kind.toUpperCase()}
+                    <span class="sr-only">
+                      , transparent {asset.name} {asset.label}
+                    </span>
+                  </a>
+                ))}
+              </span>
+            </div>
+          </li>
+        ))}
+      </ul>
+      <p class="muted brand-more">
+        See them all over a checkerboard in the{' '}
+        <a
+          tabindex="0"
+          href="/brand/transparent/curiox-transparent-overview.pdf"
+          download
+        >
+          transparent overview (PDF)
+        </a>
+        .
+      </p>
+    </section>
+
+    <section class="brand-group" aria-labelledby="brand-colors">
+      <div class="brand-group-head">
+        <h2 id="brand-colors">Colours</h2>
+        <p class="muted">Digital sRGB values.</p>
+      </div>
+      <ul class="brand-colors" data-reveal-group>
+        {colors.map((color) => (
+          <li data-reveal>
+            <span
+              class:list={[
+                'brand-swatch',
+                `brand-swatch--${color.name.toLowerCase()}`,
+              ]}
+            />
+            <strong>{color.name}</strong>
+            <span class="muted">{color.hex}</span>
+            <span class="muted">RGB {color.rgb}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="brand-group" aria-labelledby="brand-type">
+      <div class="brand-group-head">
+        <h2 id="brand-type">Wordmark</h2>
+        <p class="muted">
+          Space Grotesk Bold, all uppercase. The lettering in the files is
+          outlined, so no font is needed.
+        </p>
+      </div>
+    </section>
+
+    <section class="brand-group" aria-labelledby="brand-rules">
+      <div class="brand-group-head">
+        <h2 id="brand-rules">Using the logo</h2>
+      </div>
+      <ul class="brand-rules">
+        <li>Resize the whole logo evenly.</li>
+        <li>Do not stretch the logo or change its shape.</li>
+        <li>Do not move or resize the dot on its own.</li>
+        <li>Always write the name in capitals: CURIOX.</li>
+        <li>Use only the colour versions in this kit.</li>
+        <li>For print, ask your printer to proof the colours.</li>
+      </ul>
+      <p class="muted brand-more">
+        Need every version on one page? Get the{' '}
+        <a tabindex="0" href="/brand/curiox-complete-logos.pdf" download>
+          complete logo collection (PDF)
+        </a>
+        .
+      </p>
+    </section>
+  </section>
+</BaseLayout>

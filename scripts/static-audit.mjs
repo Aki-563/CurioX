@@ -8,6 +8,9 @@ const expected = [
   'about/index.html',
   'contact/index.html',
   'products/index.html',
+  'products/smriti/index.html',
+  'products/smriti/privacy/index.html',
+  'brand/index.html',
   '404.html',
 ];
 const files = fs
@@ -23,12 +26,15 @@ const rows = expected.map((path) => {
     /<link[^>]*rel="canonical"[^>]*href="([^"]+)"/,
   )?.[1];
   assert(title && canonical, `${path} metadata`);
+  // D042: plain tab titles (no separators, no brand name); no "starting with".
+  assert(!/[—–|]|CURIOX/i.test(title), `${path} title must be plain: ${title}`);
+  assert(!/starting with/i.test(html), `${path} contains "starting with"`);
   const canonicalPath =
     path === '404.html' ? '/404.html' : '/' + path.replace(/index\.html$/, '');
   assert.equal(canonical, `https://curiox.in${canonicalPath}`);
   assert.equal((html.match(/<h1[\s>]/g) ?? []).length, 1);
   assert(
-    !/Curiox|Curio-X|Smrithi|unsafe-inline|api[_-]?key|BEGIN PRIVATE KEY/.test(
+    !/Curiox|CurioX|Curio-X|Smrithi|unsafe-inline|api[_-]?key|BEGIN PRIVATE KEY/.test(
       html,
     ),
   );
@@ -50,12 +56,14 @@ const rows = expected.map((path) => {
     bytes: Buffer.byteLength(html),
   };
 });
-assert.equal(new Set(rows.map((row) => row.title)).size, 5);
-assert.equal(new Set(rows.map((row) => row.canonical)).size, 5);
+assert.equal(new Set(rows.map((row) => row.title)).size, 8);
+assert.equal(new Set(rows.map((row) => row.canonical)).size, 8);
 const sitemap = fs.readFileSync(`${directory}/sitemap.xml`, 'utf8');
-assert.equal((sitemap.match(/<loc>/g) ?? []).length, 4);
+assert.equal((sitemap.match(/<loc>/g) ?? []).length, 6);
+assert(sitemap.includes('<loc>https://curiox.in/brand/</loc>'));
 assert(sitemap.includes('<loc>https://curiox.in/products/</loc>'));
-assert(!/review|404|smriti|privacy/i.test(sitemap));
+assert(sitemap.includes('<loc>https://curiox.in/products/smriti/</loc>'));
+assert(!/review|404|privacy/i.test(sitemap));
 assert(
   fs
     .readFileSync(`${directory}/robots.txt`, 'utf8')
@@ -64,6 +72,19 @@ assert(
 const png = fs.readFileSync(`${directory}/social-preview.png`);
 assert.equal(png.readUInt32BE(16), 1200);
 assert.equal(png.readUInt32BE(20), 630);
+// Approved logo kit (D041): favicons, manifest and downloads are present.
+for (const asset of [
+  'favicon.svg',
+  'favicon.ico',
+  'apple-touch-icon.png',
+  'icon-192.png',
+  'icon-512.png',
+  'site.webmanifest',
+  'brand/curiox-logo-kit.zip',
+  'brand/curiox-logo-overview.pdf',
+  'brand/curiox-complete-logos.pdf',
+])
+  assert(fs.existsSync(`${directory}/${asset}`), `missing ${asset}`);
 const headers = fs.readFileSync(`${directory}/_headers`, 'utf8');
 assert(!headers.includes('unsafe-inline') && !headers.includes('unsafe-eval'));
 for (const file of files.filter((file) =>
@@ -110,5 +131,5 @@ fs.writeFileSync(
 );
 console.log(JSON.stringify(rows, null, 2));
 console.log(
-  'PASS: five HTML routes, unique metadata, four sitemap URLs, schema syntax, fonts/licenses, social dimensions and preview header patterns. Cloudflare edge behavior NOT_TESTED.',
+  'PASS: eight HTML routes, unique metadata, six sitemap URLs, brand kit assets, schema syntax, fonts/licenses, social dimensions and preview header patterns. Cloudflare edge behavior NOT_TESTED.',
 );

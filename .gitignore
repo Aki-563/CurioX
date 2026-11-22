@@ -9,3 +9,5 @@ test-results/
 playwright-report/
 *.log
 .DS_Store
+# Generated from src/assets/brand by scripts/brand-assets.mjs
+public/brand/

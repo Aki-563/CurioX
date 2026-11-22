@@ -1,6 +1,15 @@
 import { test, expect } from '@playwright/test';
 
-for (const path of ['/', '/products/', '/about/', '/contact/', '/404.html']) {
+for (const path of [
+  '/',
+  '/products/',
+  '/products/smriti/',
+  '/products/smriti/privacy/',
+  '/brand/',
+  '/about/',
+  '/contact/',
+  '/404.html',
+]) {
   test(`static content ${path}`, async ({ page }) => {
     const errors: string[] = [];
     page.on('pageerror', (error) => errors.push(error.message));
@@ -32,17 +41,54 @@ for (const path of ['/', '/products/', '/about/', '/contact/', '/404.html']) {
         page.getByRole('heading', { level: 2, name: 'Smriti', exact: true }),
       ).toBeVisible();
       await expect(page.locator('.product-card')).toHaveCount(1);
-      await expect(
-        page.locator(
-          '.product-card a, .product-card button, .product-card img',
-        ),
-      ).toHaveCount(0);
+      await expect(page.locator('.product-card button')).toHaveCount(0);
+      await expect(page.locator('.product-card a')).toHaveAttribute(
+        'href',
+        '/products/smriti/',
+      );
       await expect(
         page
           .getByRole('navigation', { name: 'Main', exact: true })
           .locator('summary'),
       ).toHaveAttribute('aria-current', 'page');
     }
+    if (path === '/products/smriti/') {
+      await expect(page.locator('h1')).toHaveText('Smriti');
+      const play = page.getByRole('link', { name: /Google Play/ });
+      await expect(play).toHaveCount(2);
+      for (const link of await play.all())
+        await expect(link).toHaveAttribute(
+          'href',
+          'https://play.google.com/store/apps/details?id=com.connectingdots.smriti',
+        );
+      await expect(page.locator('main')).toContainText(
+        'Google Play and the Google Play logo are trademarks of Google LLC.',
+      );
+      await expect(
+        page
+          .getByRole('navigation', { name: 'Main', exact: true })
+          .locator('summary'),
+      ).not.toHaveAttribute('aria-current', 'page');
+    }
+    if (path === '/brand/') {
+      // 19 approved versions (SVG + PDF) and 13 transparent ones (SVG + PNG + PDF).
+      await expect(page.locator('.brand-tile')).toHaveCount(32);
+      await expect(page.locator('.brand-tile a[download]')).toHaveCount(77);
+      await expect(
+        page.getByRole('link', { name: /Download logo kit/ }),
+      ).toHaveAttribute('href', '/brand/curiox-logo-kit.zip');
+      await expect(
+        page.getByRole('link', { name: /Logo overview \(PDF\)/ }),
+      ).toHaveAttribute('href', '/brand/curiox-logo-overview.pdf');
+    }
+    // Approved logo lockup in header and footer; brand name is uppercase.
+    await expect(page.locator('header .wordmark svg.logo-art')).toHaveCount(1);
+    await expect(page.locator('footer .wordmark svg.logo-art')).toHaveCount(1);
+    await expect(page.locator('header .wordmark')).toHaveAttribute(
+      'aria-label',
+      'CURIOX — Home',
+    );
+    expect(await page.locator('body').innerText()).not.toContain('CurioX');
   });
 }
 

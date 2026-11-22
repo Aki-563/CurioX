@@ -1,0 +1,350 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Phone from '../../components/smriti/Phone.astro';
+import { seo } from '../../config/seo';
+import { site } from '../../config/site';
+import { smriti } from '../../config/products';
+import icon from '../../assets/smriti/icon.png';
+import logStep1 from '../../assets/smriti/log-step-1.png';
+import logStep2 from '../../assets/smriti/log-step-2.png';
+import dayCards from '../../assets/smriti/day-cards.png';
+import timeline from '../../assets/smriti/timeline.png';
+import libraryActivities from '../../assets/smriti/library-activities.png';
+import libraryPlaces from '../../assets/smriti/library-places.png';
+import libraryPeople from '../../assets/smriti/library-people.png';
+import backup from '../../assets/smriti/backup.png';
+import '../../styles/smriti.css';
+
+const coverFiles = import.meta.glob<{ default: ImageMetadata }>(
+  '../../assets/smriti/covers/*.jpg',
+  { eager: true },
+);
+const months = [
+  ['jan', 'January'],
+  ['feb', 'February'],
+  ['mar', 'March'],
+  ['apr', 'April'],
+  ['may', 'May'],
+  ['jun', 'June'],
+  ['jul', 'July'],
+  ['aug', 'August'],
+  ['sep', 'September'],
+  ['oct', 'October'],
+  ['nov', 'November'],
+  ['dec', 'December'],
+] as const;
+const covers = months.map(([key, label]) => ({
+  label,
+  src: coverFiles[`../../assets/smriti/covers/${key}.jpg`].default,
+}));
+
+const pageUrl = new URL('/products/smriti/', site.url).href;
+const appSchema = {
+  '@type': 'MobileApplication',
+  '@id': `${pageUrl}#app`,
+  name: 'Smriti',
+  url: pageUrl,
+  operatingSystem: 'Android',
+  applicationCategory: 'LifestyleApplication',
+  description: seo.smriti.description,
+  downloadUrl: smriti.playStoreUrl,
+  installUrl: smriti.playStoreUrl,
+  license: 'https://opensource.org/licenses/MIT',
+  isAccessibleForFree: true,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'INR' },
+  publisher: { '@id': `${site.url}/#organization` },
+};
+
+const privacy = [
+  ['No account.', 'There is no sign-up and no login.'],
+  ['No cloud.', 'Your journal lives in one file on your phone.'],
+  ['No ads.', 'No ads and no subscriptions. Ever.'],
+  ['No trackers.', 'No analytics and no telemetry.'],
+  ['Works offline.', 'Log your day without the internet.'],
+  ['Locked tight.', 'Open it with your fingerprint, face or a passcode.'],
+];
+---
+
+<BaseLayout
+  {...seo.smriti}
+  extraSchema={[appSchema]}
+  bodyClass="smriti-page"
+  themeColor="#000000"
+>
+  <div class="smriti">
+    <section class="sm-hero sm-dark" aria-labelledby="smriti-heading">
+      <div class="container sm-hero-copy" data-reveal-group>
+        <Image
+          class="sm-app-icon"
+          src={icon}
+          alt=""
+          width={88}
+          height={88}
+          densities={[1, 2]}
+          loading="eager"
+          data-reveal
+        />
+        <h1 id="smriti-heading" data-reveal>
+          Smriti
+        </h1>
+        <p class="sm-hero-title" data-reveal>
+          Remember your days.
+        </p>
+        <p class="sm-hero-lede" data-reveal>
+          A private, offline journal. Log what you did, where, and with whom.
+        </p>
+        <div class="sm-cta" data-reveal>
+          <a class="sm-play" href={smriti.playStoreUrl} rel="noopener">
+            <img
+              src="/badges/google-play-badge.png"
+              alt="Get it on Google Play"
+              width="460"
+              height="178"
+            />
+          </a>
+          <p class="sm-cta-note">Free. No ads. No account.</p>
+        </div>
+      </div>
+      <div class="sm-fan" aria-label="Smriti screens" role="group">
+        <div class="sm-fan-item sm-fan-left" data-reveal>
+          <Phone
+            src={logStep1}
+            alt="Logging an activity: pick a type, tags and people."
+            eager
+          />
+        </div>
+        <div class="sm-fan-item sm-fan-center" data-reveal>
+          <Phone
+            src={dayCards}
+            alt="A day shown as a stack of cards."
+            eager
+            priority
+          />
+        </div>
+        <div class="sm-fan-item sm-fan-right" data-reveal>
+          <Phone
+            src={timeline}
+            alt="A day shown as a colour-coded timeline."
+            eager
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="sm-section sm-light" aria-labelledby="log-heading">
+      <div class="container">
+        <div class="sm-head" data-reveal>
+          <p class="sm-kicker">Log</p>
+          <h2 id="log-heading">Log a moment in two steps.</h2>
+          <p class="sm-sub">
+            Pick an activity, tags and people. Then add the time and a note.
+            Type it or say it.
+          </p>
+        </div>
+        <ol class="sm-pair" data-reveal-group>
+          <li class="sm-tile" data-reveal>
+            <Phone src={logStep1} alt="Step 1: What's the activity?" />
+            <h3>
+              <span class="sm-step">1</span> What did you do?
+            </h3>
+            <p>Choose an activity, add tags, and pick who was with you.</p>
+          </li>
+          <li class="sm-tile" data-reveal>
+            <Phone src={logStep2} alt="Step 2: add notes and confirm." />
+            <h3>
+              <span class="sm-step">2</span> When and where?
+            </h3>
+            <p>
+              Set the time, write a note, and Smriti picks the nearest place.
+            </p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="sm-section sm-white" aria-labelledby="look-heading">
+      <div class="container">
+        <div class="sm-head" data-reveal>
+          <p class="sm-kicker">Look back</p>
+          <h2 id="look-heading">Your day, two ways.</h2>
+          <p class="sm-sub">
+            See every day as a timeline, or flip through it as cards.
+          </p>
+        </div>
+        <div class="sm-pair" data-reveal-group>
+          <div class="sm-tile" data-reveal>
+            <Phone src={timeline} alt="Timeline view of a day." />
+            <h3>Timeline</h3>
+            <p>Your day in order, coloured from night blue to morning gold.</p>
+          </div>
+          <div class="sm-tile" data-reveal>
+            <Phone src={dayCards} alt="Cards view of a day." />
+            <h3>Cards</h3>
+            <p>One moment at a time. Swipe right to star the special ones.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sm-section sm-dark" aria-labelledby="library-heading">
+      <div class="container">
+        <div class="sm-head" data-reveal>
+          <p class="sm-kicker">My Library</p>
+          <h2 id="library-heading">Your people. Your places. Your things.</h2>
+          <p class="sm-sub">
+            Build your own lists as you go. Smriti never reads your phone's
+            contacts.
+          </p>
+        </div>
+      </div>
+      <div
+        class="sm-rail"
+        role="region"
+        aria-label="My Library screens"
+        tabindex="0"
+      >
+        <ul class="sm-rail-track" data-reveal-group>
+          <li class="sm-tile" data-reveal>
+            <Phone src={libraryActivities} alt="Activities and tags list." />
+            <h3>Activities &amp; tags</h3>
+            <p>Work, gym, family. Add tags like Legs or Cardio.</p>
+          </li>
+          <li class="sm-tile" data-reveal>
+            <Phone src={libraryPlaces} alt="Saved places list." />
+            <h3>Places</h3>
+            <p>Save the spots you visit, with a pin on the map.</p>
+          </li>
+          <li class="sm-tile" data-reveal>
+            <Phone src={libraryPeople} alt="People list." />
+            <h3>People</h3>
+            <p>Add the people you spend time with.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="sm-section sm-black" aria-labelledby="privacy-heading">
+      <div class="container">
+        <div class="sm-head" data-reveal>
+          <p class="sm-kicker">Privacy</p>
+          <h2 id="privacy-heading">Private by design.</h2>
+          <p class="sm-sub">
+            Your life stays on your phone. Only you can see it.
+          </p>
+        </div>
+        <ul class="sm-privacy" data-reveal-group>
+          {privacy.map(([title, text]) => (
+            <li data-reveal>
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </li>
+          ))}
+        </ul>
+        <p class="sm-policy-link" data-reveal>
+          <a href="/products/smriti/privacy/">Read the Smriti privacy policy</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="sm-section sm-white" aria-labelledby="backup-heading">
+      <div class="container sm-split">
+        <div class="sm-split-copy" data-reveal>
+          <p class="sm-kicker">Backup</p>
+          <h2 id="backup-heading">Backups only you can open.</h2>
+          <p class="sm-sub">
+            Export an encrypted <code>.smriti</code> file, locked with your
+            passphrase. Restore it any time, even on a new phone.
+          </p>
+          <p class="sm-note">
+            Keep your passphrase safe. Without it, a backup can't be opened.
+          </p>
+        </div>
+        <div class="sm-split-media" data-reveal>
+          <Phone
+            src={backup}
+            alt="Data and Security screen with Export Backup and Import Backup."
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="sm-section sm-light" aria-labelledby="covers-heading">
+      <div class="container">
+        <div class="sm-head" data-reveal>
+          <p class="sm-kicker">Make it yours</p>
+          <h2 id="covers-heading">A cover for every month.</h2>
+          <p class="sm-sub">
+            Twelve month covers, light and dark modes. Or use your own photos.
+          </p>
+        </div>
+        <ul class="sm-covers" data-reveal-group>
+          {covers.map(({ label, src }) => (
+            <li data-reveal>
+              <Image
+                src={src}
+                alt=""
+                widths={[320, 640]}
+                quality={62}
+                sizes="(min-width: 1280px) 300px, (min-width: 1024px) 23vw, (min-width: 640px) 31vw, 46vw"
+                loading="lazy"
+                decoding="async"
+              />
+              <span>{label}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="sm-section sm-dark sm-center" aria-labelledby="ai-heading">
+      <div class="container sm-head" data-reveal>
+        <p class="sm-kicker">AI Insights</p>
+        <h2 id="ai-heading">Insights, on your terms.</h2>
+        <p class="sm-sub">
+          Export your logs as text and share them with an AI app you choose.
+          Nothing leaves your phone unless you send it.
+        </p>
+      </div>
+    </section>
+
+    <section class="sm-final sm-black" aria-labelledby="get-heading">
+      <div class="container sm-final-inner" data-reveal-group>
+        <Image
+          class="sm-app-icon"
+          src={icon}
+          alt=""
+          width={88}
+          height={88}
+          densities={[1, 2]}
+          data-reveal
+        />
+        <h2 id="get-heading" data-reveal>
+          Start remembering today.
+        </h2>
+        <p class="sm-sub" data-reveal>
+          Free and open source. No ads. No subscriptions.
+        </p>
+        <a
+          class="sm-play"
+          href={smriti.playStoreUrl}
+          rel="noopener"
+          data-reveal
+        >
+          <img
+            src="/badges/google-play-badge.png"
+            alt="Get Smriti on Google Play"
+            width="460"
+            height="178"
+            loading="lazy"
+          />
+        </a>
+        <p class="sm-legal" data-reveal>
+          Available on Android. Google Play and the Google Play logo are
+          trademarks of Google LLC.
+          <a href="/products/smriti/privacy/">Privacy policy</a>
+        </p>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

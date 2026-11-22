@@ -48,3 +48,21 @@ Final D035 verdict: DONE. Navigation24/24 passed33.4s across Chromium/Firefox/We
 D036: User authorises commit/push of current D025-D035 changes to existing origin main. Fetched origin/main successfully; before commit HEAD and origin/main both d4b6bb4, divergence0/0. Existing D035 validation remains the current code evidence; no code changes in this publication step. Generated artifacts/dependencies remain ignored. Website deployment remains unauthorised.
 
 D036 DONE: source commit f0940c9 pushed successfully to origin main (d4b6bb4..f0940c9). No force push, website deployment or DNS/account change. Follow-up documentation records this observed outcome.
+
+## D037/D038 Smriti product page - 2026-11-22
+
+- Added `/products/smriti/` (Apple-style marketing page, Smriti theme, official Google Play badge) and `/products/smriti/privacy/` (policy verbatim from the user's Google Sites page).
+- Assets: 8 Play Store screenshots cropped to the phone screen, Smriti repo icon and 12 month covers (built to WebP by Astro).
+- Wiring: Products card/header link, sitemap entry, `MobileApplication` JSON-LD via new optional `extraSchema` prop on BaseLayout/Metadata.
+- Tests: updated nav/motion/site/seo/static-audit expectations; added both pages to accessibility, responsive and site sweeps; axe now waits for time-based animations to settle.
+- Verification: `astro check` 0/0; `audit:static` PASS; Playwright 144/144 pass; manual screenshots at 320/390/768/1440 (local `test-artifacts/smriti/`).
+- Pre-existing, unchanged: `prettier --check` flags CRLF working-copy files (autocrlf) such as `src/config/navigation.ts`; not touched.
+
+## D041 logo kit and CURIOX casing - 2026-11-22
+
+- Added approved logo masters (`src/assets/brand/`) and public download kit (`public/brand/`); `scripts/brand-assets.mjs` regenerates web logo, favicons, app icons, manifest and ZIP.
+- Header/footer lockup via `Logo.astro`; web lettering at 78%; Smriti pages use white-on-black mark.
+- New `/brand/` logo kit page; footer "Brand" link; sitemap, schema `logo`, social preview, CSP `manifest-src`.
+- Brand name changed to CURIOX in all site copy, titles, metadata and tests; static audit now rejects "CurioX" in built HTML.
+- Tests: Brand page added to site/a11y/responsive sweeps; seo test checks logo schema, favicons and downloads; semantics test accepts labelled `role="img"` SVGs. Result 153/153.
+- `ButtonLink` gained a `download` option and `Icon` a download glyph. `TextWordmark.astro` removed (superseded).

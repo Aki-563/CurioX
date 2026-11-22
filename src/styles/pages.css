@@ -1,5 +1,8 @@
 .simple-page {
   padding-block: clamp(48px, 7vw, 96px);
+}
+/* Cap content width but keep the left edge aligned with the header logo. */
+.simple-page > * {
   max-width: 1040px;
 }
 .simple-page h1 {
