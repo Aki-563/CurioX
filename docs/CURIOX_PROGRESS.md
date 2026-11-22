@@ -233,3 +233,9 @@ User asked to remove unwanted test and other files. Removed ignored local output
 ## Single copy of logo files - 2026-11-22
 
 User asked why `public/brand` exists when everything is in assets. Logo files are now stored once in `src/assets/brand/` (PDFs moved there; README, manifest and complete PDF synced to the user's updated 32-version kit). `public/brand/` is git-ignored and rebuilt by `scripts/brand-assets.mjs`, which `dev`, `build` and `build:review` now run first. Pending changes 237 → 174. Verification: check 0/0, builds, static audit PASS, Playwright 153/153.
+
+D043 DONE: commit a52d293 pushed to origin main (45d8d4b..a52d293), no force push; local and origin in sync. Added .gitattributes so logo masters (77 files, verified against manifest SHA-256 in the index) and binary assets are stored byte-exact. No deployment, DNS or account change.
+
+## Cloudflare build fix - 2026-11-22
+
+Cloudflare Pages build of a52d293 failed: `spawnSync zip ENOENT` (build image has no `zip`). `brand-assets.mjs` now writes the kit ZIP with a small built-in Node zlib writer (no external tool, no new dependency, deterministic bytes). Verified: two runs give identical ZIP; Windows Expand-Archive extracts 87 files byte-identical to the masters; fresh clone + clean install + `pnpm build` succeeds and static audit passes.
